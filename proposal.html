@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMANIE Homes Operations CRM — Proposal | Pribsons International</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-faint: #FBF6E8;
+  --ink: #141210;
+  --ink-mid: #1E1C18;
+  --text: #38352E;
+  --muted: #7A7568;
+  --cream: #F9F5EE;
+  --warm: #F2EBD9;
+  --border: #DDD5C0;
+  --red-soft: #FDECEA;
+  --red: #C0392B;
+  --green-soft: #EBF5EE;
+  --green: #2E7D4F;
+  --green-border: #A8D5B5;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #EDEAE3;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media print {
+  body { background: white; font-size: 13px; }
+  .no-print { display: none !important; }
+  .document { box-shadow: none; }
+  .section { page-break-inside: avoid; }
+}
+
+.document {
+  max-width: 880px;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 8px 80px rgba(0,0,0,0.12);
+}
+
+
+  .cover-logo {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: white;
+    padding: 4px;
+    display: block;
+    margin-bottom: 10px;
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.25);
+  }
+
+  /* ─── TOOLBAR ─── */
+.toolbar {
+  background: var(--warm);
+  border-bottom: 1px solid var(--border);
+  padding: 13px 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.toolbar-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.print-btn {
+  background: var(--ink);
+  color: var(--gold);
+  border: none;
+  padding: 9px 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+.print-btn:hover { opacity: 0.85; }
+
+/* ─── COVER ─── */
+.cover {
+  background: var(--ink-mid);
+  padding: 64px 52px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  bottom: -100px; right: -100px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.10);
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -50px; right: -50px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.18);
+}
+
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 52px;
+}
+
+.cover-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cover-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.35);
+  padding: 5px 14px;
+  border-radius: 2px;
+  width: fit-content;
+}
+.provider-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.5px;
+}
+
+.cover-ref {
+  text-align: right;
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.8;
+}
+
+.cover h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -1px;
+  color: white;
+  margin-bottom: 12px;
+}
+.cover h1 em {
+  color: var(--gold);
+  font-style: normal;
+}
+.cover-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+
+.cover-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 28px;
+}
+.stat {
+  padding: 0 24px 0 0;
+  border-right: 1px solid rgba(255,255,255,0.07);
+}
+.stat:first-child { padding-left: 0; }
+.stat:last-child { border-right: none; padding-left: 24px; padding-right: 0; }
+.stat:nth-child(2), .stat:nth-child(3) { padding-left: 24px; }
+.stat-label {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 5px;
+}
+.stat-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gold-light);
+  line-height: 1.2;
+}
+.stat-note {
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+  margin-top: 2px;
+}
+
+/* ─── BODY ─── */
+.body { padding: 0 52px 64px; }
+
+/* ─── SECTION ─── */
+.section {
+  padding: 52px 0 44px;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-child { border-bottom: none; }
+
+.sec-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+.sec-num {
+  width: 30px; height: 30px;
+  background: var(--ink);
+  color: var(--gold);
+  border-radius: 50%;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 27px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+.sec-rule { flex: 1; height: 1px; background: var(--border); }
+
+p { margin-bottom: 13px; font-size: 14px; color: var(--text); }
+
+/* ─── STACK BANNER ─── */
+.stack-banner {
+  background: var(--ink);
+  border-radius: 4px;
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+.stack-pill {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stack-pill-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.stack-pill-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold-light);
+}
+.stack-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255,255,255,0.08);
+}
+
+/* ─── SCOPE GRID ─── */
+.scope-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.scope-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  padding: 14px 16px;
+  border-radius: 2px;
+}
+.scope-card-title {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.scope-card-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ─── PHASES ─── */
+.phases { display: flex; flex-direction: column; }
+
+.phase {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  position: relative;
+}
+.phase:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 170px;
+  top: 44px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+  transform: translateX(19px);
+}
+
+.phase-l {
+  padding: 18px 22px 18px 0;
+  border-right: 1px solid var(--border);
+  text-align: right;
+}
+.phase-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}
+.phase-name {
+  font-weight: 500;
+  font-size: 12.5px;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.phase-week {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.phase-r {
+  padding: 18px 0 18px 26px;
+  position: relative;
+}
+.phase-dot {
+  position: absolute;
+  left: -6px;
+  top: 25px;
+  width: 12px; height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px var(--gold);
+}
+.phase-items {
+  list-style: none;
+  padding: 0; margin: 0;
+}
+.phase-items li {
+  font-size: 13px;
+  color: var(--text);
+  padding: 1.5px 0 1.5px 15px;
+  position: relative;
+  margin: 0;
+}
+.phase-items li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+
+/* ─── CHECKPOINT ─── */
+.checkpoint {
+  background: var(--gold-faint);
+  border: 1px solid #DEC97A;
+  border-radius: 2px;
+  padding: 10px 16px;
+  font-size: 12px;
+  color: var(--text);
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ─── PAYMENT TABLE ─── */
+.pay-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+}
+.pay-table th {
+  background: var(--ink);
+  color: var(--gold);
+  font-size: 9.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 11px 16px;
+  text-align: left;
+}
+.pay-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+  color: var(--text);
+  vertical-align: top;
+}
+.pay-table tr:last-child td { border-bottom: none; }
+.pay-table tr:nth-child(even) td { background: var(--cream); }
+.pay-table td.amt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.pay-table tr.featured td {
+  background: var(--gold-faint) !important;
+  border-top: 2px solid var(--gold) !important;
+  border-bottom: 2px solid var(--gold) !important;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+.badge-due { background: var(--gold-faint); color: var(--gold); border: 1px solid var(--gold-light); }
+.badge-pending { background: var(--ink); color: var(--gold); }
+.badge-done { background: var(--green-soft); color: var(--green); border: 1px solid var(--green-border); }
+
+.total-bar {
+  background: var(--ink);
+  border-radius: 3px;
+  padding: 26px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+.total-bar-l .lbl {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 4px;
+}
+.total-bar-l .big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1;
+}
+.total-bar-l .sub {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.25);
+  margin-top: 4px;
+}
+.total-bar-r { text-align: right; }
+.total-bar-r .lbl {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 4px;
+}
+.total-bar-r .kick {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--gold);
+}
+.total-bar-r .sub {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.2);
+  margin-top: 3px;
+}
+
+/* ─── OOS ─── */
+.oos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.oos-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  padding: 10px 14px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+.oos-x {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--red-soft);
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ─── TERMS ─── */
+.terms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.term-card {
+  padding: 15px 17px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+.term-lbl {
+  font-size: 9.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.term-val {
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ─── CALLOUT ─── */
+.callout {
+  background: var(--gold-faint);
+  border: 1px solid #DEC97A;
+  border-left: 3px solid var(--gold);
+  padding: 13px 17px;
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+.callout p {
+  font-size: 12.5px;
+  color: var(--text);
+  margin: 0;
+}
+
+/* ─── PARTIES ─── */
+.parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+.party-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 16px 18px;
+}
+.party-role {
+  font-size: 9.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.party-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.party-detail {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ─── SIGNATURES ─── */
+.sig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-top: 10px;
+}
+.sig-block {
+  border-top: 1.5px solid var(--border);
+  padding-top: 12px;
+}
+.sig-space { height: 52px; }
+.sig-line {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+.sig-role {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.sig-field {
+  font-size: 11px;
+  color: #BCBAB5;
+  margin-top: 5px;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 3px;
+}
+.sig-company {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* ─── WITNESS ─── */
+.witness-block {
+  margin-top: 28px;
+  border-top: 1px dashed var(--border);
+  padding-top: 18px;
+}
+.witness-title {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.witness-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--ink);
+  padding: 20px 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gold);
+}
+.footer-right { text-align: right; }
+.footer-ref { font-size: 10px; color: rgba(255,255,255,0.25); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 700px) {
+  .cover, .body, .footer, .toolbar { padding-left: 22px; padding-right: 22px; }
+  .cover h1 { font-size: 38px; }
+  .cover-stats, .scope-grid, .oos-grid, .terms-grid, .sig-grid, .parties, .witness-grid { grid-template-columns: 1fr !important; }
+  .stat { padding: 10px 0; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .phase { grid-template-columns: 1fr; }
+  .phase-l { border-right: none; text-align: left; }
+  .phase::after { display: none; }
+  .phase-dot { display: none; }
+  .phase-r { padding-left: 0; }
+  .stack-banner { flex-direction: column; align-items: flex-start; }
+  .total-bar { flex-direction: column; gap: 16px; text-align: left; }
+  .total-bar-r { text-align: left; }
+  .pay-table { display: block; overflow-x: auto; }
+}
+</style>
+</head>
+<body>
+<div class="document">
+
+  <!-- TOOLBAR -->
+  <div class="toolbar no-print">
+    <span class="toolbar-label">Pribsons International — Project Proposal · Ref: UHA-CRM-001</span>
+    <button class="print-btn" onclick="window.print()">⬇ Save as PDF</button>
+  </div>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-top">
+      <div class="cover-brand">
+        <img class="cover-logo" src="data:image/png;base64,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" alt="Pribsons International Logo">
+        <span class="cover-tag">Project Proposal</span>
+        <span class="provider-name">Pribsons International</span>
+      </div>
+      <div class="cover-ref">
+        Prepared: May 2026<br>
+        Ref: UHA-CRM-001<br>
+        Confidential
+      </div>
+    </div>
+
+    <h1>UMANIE Homes<br><em>Operations CRM</em></h1>
+    <p class="cover-sub">Real Estate Sales · Project Tracking · Construction Costing · Property Management</p>
+
+    <div class="cover-stats">
+      <div class="stat">
+        <div class="stat-label">Prepared By</div>
+        <div class="stat-value">Pribsons International</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Prepared For</div>
+        <div class="stat-value">UMANIE Homes Africa</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Total Investment</div>
+        <div class="stat-value">GHS 25,000</div>
+        <div class="stat-note">All-inclusive</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Delivery Target</div>
+        <div class="stat-value">4 Weeks</div>
+        <div class="stat-note">Functional launch</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- §1 OVERVIEW -->
+    <div class="section">
+      <div class="sec-header">
+        <div class="sec-num">1</div>
+        <h2 class="sec-title">Project Overview</h2>
+        <div class="sec-rule"></div>
+      </div>
+
+      <p>Pribsons International proposes to design, develop, deploy and provide post-launch support for a custom <strong>Real Estate Operations CRM</strong> for UMANIE Homes Africa. This is not a generic CRM — it is a complete real estate development and operations platform built around the specific way UMANIE Homes works.</p>
+
+      <p>The system will manage the full journey: construction project tracking, materials and labour costing, lead management, property sales, invoicing, purchase agreement generation, customer reviews, and a future-ready property management module — all in one place, accessible by a small team today and scalable as the company grows.</p>
+
+      <div class="callout">
+        <p><strong>Tech Stack:</strong> Built on Next.js (React), Supabase (PostgreSQL + Auth + File Storage), and Tailwind CSS — a modern, fast, and cost-efficient stack that supports free-tier hosting from day one, with clean pathways to scale.</p>
+      </div>
+
+      <div class="callout">
+        <p><strong>Delivery format:</strong> This proposal may be shared as a live link for preview and as a downloadable PDF for review, internal sharing, and signing.</p>
+      </div>
+    </div>
+
+    <!-- §2 SCOPE -->
+    <div class="section">
+      <div class="sec-header">
+        <div class="sec-num">2</div>
+        <h2 class="sec-title">Scope of Work</h2>
+        <div class="sec-rule"></div>
+      </div>
+
+      <p>The following system modules are included in this engagement. All modules, deployment, hosting setup, and initial post-launch support are covered within the agreed fee.</p>
+
+      <div class="stack-banner">
+        <div class="stack-pill">
+          <span class="stack-pill-label">Frontend</span>
+          <span class="stack-pill-value">Next.js + React</span>
+        </div>
+        <div class="stack-divider"></div>
+        <div class="stack-pill">
+          <span class="stack-pill-label">Database + Auth</span>
+          <span class="stack-pill-value">Supabase (PostgreSQL)</span>
+        </div>
+        <div class="stack-divider"></div>
+        <div class="stack-pill">
+          <span class="stack-pill-label">File Storage</span>
+          <span class="stack-pill-value">Supabase Storage</span>
+        </div>
+        <div class="stack-divider"></div>
+        <div class="stack-pill">
+          <span class="stack-pill-label">Styling</span>
+          <span class="stack-pill-value">Tailwind CSS</span>
+        </div>
+        <div class="stack-divider"></div>
+        <div class="stack-pill">
+          <span class="stack-pill-label">PDF Generation</span>
+          <span class="stack-pill-value">React-PDF / Puppeteer</span>
+        </div>
+        <div class="stack-divider"></div>
+        <div class="stack-pill">
+          <span class="stack-pill-label">Hosting</span>
+          <span class="stack-pill-value">Vercel + Supabase</span>
+        </div>
+      </div>
+
+      <div class="scope-grid">
+        <div class="scope-card">
+          <div class="scope-card-title">📊 Dashboard</div>
+          <p class="scope-card-desc">Live business overview — leads, active projects, properties, pending payments, follow-ups, overdue alerts and recent activity feed.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">👥 Leads & Clients</div>
+          <p class="scope-card-desc">Full lead lifecycle management: stages, source tracking, follow-up history, site visits, and linked properties, invoices and agreements.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">🏗️ Projects & Properties</div>
+          <p class="scope-card-desc">Construction project tracking with status, progress, images, linked units and a Convert Project → Property / Units feature.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">📦 Project Inventory</div>
+          <p class="scope-card-desc">Materials tracking with stock-in and stock-out. Supplier records, purchase dates, remaining stock calculations, and receipt uploads.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">👷 Workmanship & Labour</div>
+          <p class="scope-card-desc">Worker and team payment records per project — daily, weekly, contract or milestone. Automatically feeds into the total project cost.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">🧾 Project Expenses</div>
+          <p class="scope-card-desc">Other project costs: transport, permits, equipment, tools, utilities. Full budget vs actual view and estimated profit calculation.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">📈 Sales Pipeline</div>
+          <p class="scope-card-desc">From new enquiry to closed sale and handover. Reservations, discounts, linked payment plans, agreements and sales officer assignment.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">💰 Payments, Invoices & Receipts</div>
+          <p class="scope-card-desc">Full payment tracking, instalment schedules, overdue alerts, and UMANIE-branded PDF invoice and receipt generation.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">📄 Purchase Agreement Generator</div>
+          <p class="scope-card-desc">Auto-populated purchase agreements from client and property records. Preview, download and print as branded PDF.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">🗂️ Document Management</div>
+          <p class="scope-card-desc">Organised file storage by client, project, property and document type — IDs, agreements, site plans, handover documents and more.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">⭐ Customer Review System</div>
+          <p class="scope-card-desc">Review alerts triggered after handover. Digital review form link and printable PDF form. CEO approval before publishing.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">🏢 Property Management Module</div>
+          <p class="scope-card-desc">Tenants, landlords, rent collection, maintenance requests, property inspections, and management fee tracking.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">📋 Reports</div>
+          <p class="scope-card-desc">Sales, payment, project cost, inventory, lead conversion, staff activity, and property management reports for the CEO.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">⚙️ User Roles & Activity Logs</div>
+          <p class="scope-card-desc">Role-based access (CEO, Customer Service, and future roles). Full audit trail — who created, edited, deleted or generated anything.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">🌐 Deployment, Hosting & Launch Support</div>
+          <p class="scope-card-desc">System deployment to Vercel and Supabase, SSL setup, domain configuration, database setup, and post-launch support. Free-tier infrastructure used where usage allows.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- §3 TIMELINE -->
+    <div class="section">
+      <div class="sec-header">
+        <div class="sec-num">3</div>
+        <h2 class="sec-title">4-Week Delivery Plan</h2>
+        <div class="sec-rule"></div>
+      </div>
+
+      <p>The system will be delivered as a focused <strong>4-week functional launch</strong>. This timeline is achievable with the React + Supabase stack and requires timely feedback from the client — no longer than 24–48 hours per review checkpoint — and no major scope changes after Week 1 sign-off.</p>
+
+      <div class="phases">
+
+        <div class="phase">
+          <div class="phase-l">
+            <div class="phase-badge">Week 1</div>
+            <div class="phase-name">Foundation, Architecture & Core Setup</div>
+            <div class="phase-week">Days 1–7</div>
+          </div>
+          <div class="phase-r">
+            <div class="phase-dot"></div>
+            <ul class="phase-items">
+              <li>Project setup — Next.js, Supabase, Tailwind, repo structure</li>
+              <li>Database schema design for all modules</li>
+              <li>Authentication and session management</li>
+              <li>Role-based access control (CEO, Customer Service + future roles)</li>
+              <li>Activity log and audit trail system</li>
+              <li>Company profile and settings</li>
+              <li>Base dashboard layout with live data connections</li>
+              <li>Hosting environment setup (Vercel + Supabase)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-l">
+            <div class="phase-badge">Week 2</div>
+            <div class="phase-name">CRM, Projects, Properties & Costing</div>
+            <div class="phase-week">Days 8–14</div>
+          </div>
+          <div class="phase-r">
+            <div class="phase-dot"></div>
+            <ul class="phase-items">
+              <li>Leads and Clients module (all stages, notes, follow-ups)</li>
+              <li>Site Visits tracking and management</li>
+              <li>Projects module with construction status and progress</li>
+              <li>Properties and Units module</li>
+              <li>Convert Project → Property / Units feature</li>
+              <li>Project Inventory — stock-in and stock-out</li>
+              <li>Workmanship and Labour tracking</li>
+              <li>Project Expenses and budget vs actual cost calculator</li>
+            </ul>
+            <div class="checkpoint">🔍 <strong>Mid-point demo</strong> — working system shown to client for review and feedback before proceeding.</div>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-l">
+            <div class="phase-badge">Week 3</div>
+            <div class="phase-name">Sales, Payments, Documents & Reviews</div>
+            <div class="phase-week">Days 15–21</div>
+          </div>
+          <div class="phase-r">
+            <div class="phase-dot"></div>
+            <ul class="phase-items">
+              <li>Sales Pipeline module (full stages)</li>
+              <li>Payment Plans and instalment tracking</li>
+              <li>Invoice generation with UMANIE branding (PDF)</li>
+              <li>Receipt generation with UMANIE branding (PDF)</li>
+              <li>Purchase Agreement Generator (auto-populated PDF)</li>
+              <li>Document Management module with file uploads</li>
+              <li>Customer Review System — digital link and printable form</li>
+              <li>Review approval workflow for CEO</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-l">
+            <div class="phase-badge">Week 4</div>
+            <div class="phase-name">Property Management, Reports, QA & Launch</div>
+            <div class="phase-week">Days 22–28</div>
+          </div>
+          <div class="phase-r">
+            <div class="phase-dot"></div>
+            <ul class="phase-items">
+              <li>Property Management module — tenants, landlords, rent and maintenance</li>
+              <li>Inspection records and management fee tracking</li>
+              <li>All reports module (sales, payments, project costs, activity)</li>
+              <li>Full QA and cross-module testing</li>
+              <li>Final deployment to live environment and domain configuration</li>
+              <li>CEO and team admin training session</li>
+              <li>Handover documentation and system walkthrough</li>
+            </ul>
+            <div class="checkpoint">🚀 <strong>Go live</strong> — system deployed and handed over. 30-day bug-fix support begins.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- §4 PAYMENT -->
+    <div class="section">
+      <div class="sec-header">
+        <div class="sec-num">4</div>
+        <h2 class="sec-title">Investment & Payment Schedule</h2>
+        <div class="sec-rule"></div>
+      </div>
+
+      <table class="pay-table">
+        <thead>
+          <tr>
+            <th>Payment</th>
+            <th>Trigger</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="featured">
+            <td>
+              <strong>Initial Payment — 60%</strong><br>
+              <span style="font-size:12px;color:var(--muted)">Project kick-off: planning, architecture, hosting setup and full development begins immediately upon receipt</span>
+            </td>
+            <td style="white-space:nowrap">Upon agreement signing</td>
+            <td class="amt">GHS 15,000</td>
+            <td><span class="badge badge-due">Due on Signing</span></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Final Payment — 40%</strong><br>
+              <span style="font-size:12px;color:var(--muted)">Due after QA, training and client sign-off — before live deployment and final handover</span>
+            </td>
+            <td style="white-space:nowrap">Upon completion</td>
+            <td class="amt">GHS 10,000</td>
+            <td><span class="badge badge-pending">On Completion</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="total-bar">
+        <div class="total-bar-l">
+          <div class="lbl">Total Project Investment</div>
+          <div class="big">GHS 25,000</div>
+          <div class="sub">Development · Deployment · Hosting Setup · 30-day Post-Launch Support</div>
+        </div>
+        <div class="total-bar-r">
+          <div class="lbl">Amount Due to Begin</div>
+          <div class="kick">GHS 15,000</div>
+          <div class="sub">60% initial payment · Work begins immediately</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §5 OUT OF SCOPE -->
+    <div class="section">
+      <div class="sec-header">
+        <div class="sec-num">5</div>
+        <h2 class="sec-title">Out of Scope — First Build</h2>
+        <div class="sec-rule"></div>
+      </div>
+      <p>The items below are not included in this engagement. Deployment, hosting setup and 30 days of post-launch bug-fix support are included. Ongoing monthly support, domain fees and any premium third-party usage costs are separate. All excluded items can be scoped and quoted upon request.</p>
+      <div class="oos-grid">
+        <div class="oos-item"><div class="oos-x">✕</div>Mobile application (iOS / Android)</div>
+        <div class="oos-item"><div class="oos-x">✕</div>WhatsApp API automation</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Payment gateway integration</div>
+        <div class="oos-item"><div class="oos-x">✕</div>E-signature / DocuSign integration</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Public customer-facing portal</div>
+        <div class="oos-item"><div class="oos-x">✕</div>HR or payroll management</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Full accounting software integration</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Custom domain purchase / renewal fees</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Ongoing hosting management (monthly plan)</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Major post-launch feature expansions</div>
+      </div>
+    </div>
+
+    <!-- §6 TERMS -->
+    <div class="section">
+      <div class="sec-header">
+        <div class="sec-num">6</div>
+        <h2 class="sec-title">Key Terms & Conditions</h2>
+        <div class="sec-rule"></div>
+      </div>
+      <div class="terms-grid">
+        <div class="term-card">
+          <div class="term-lbl">4-Week Launch Conditions</div>
+          <p class="term-val">The 4-week delivery target requires: no major scope changes after Week 1, client feedback within 24–48 hours at each checkpoint, and prompt provision of required content (logo, brand colours, legal wording etc.).</p>
+        </div>
+        <div class="term-card">
+          <div class="term-lbl">Revisions</div>
+          <p class="term-val">Two revision rounds included within the agreed scope. Changes beyond the agreed scope or after Week 1 sign-off will be quoted separately to protect the timeline.</p>
+        </div>
+        <div class="term-card">
+          <div class="term-lbl">Hosting & Deployment</div>
+          <p class="term-val">Deployment, hosting configuration, database setup, SSL and domain setup are included in this engagement. Vercel (frontend) and Supabase (database and storage) free tiers will be used where usage allows. Upgrades discussed as usage grows.</p>
+        </div>
+        <div class="term-card">
+          <div class="term-lbl">Ongoing Support (Post-Launch)</div>
+          <p class="term-val">30 days of bug-fix support included after go-live. After that, ongoing hosting management, backups, monitoring and minor improvements are available from GHS 500/month.</p>
+        </div>
+        <div class="term-card">
+          <div class="term-lbl">Ownership & Data</div>
+          <p class="term-val">UMANIE Homes Africa owns all its business data, documents and system usage rights upon completion of full payment. Source code transfer terms can be agreed separately if required.</p>
+        </div>
+        <div class="term-card">
+          <div class="term-lbl">Payment Terms</div>
+          <p class="term-val">Development begins upon confirmed receipt of the GHS 15,000 initial payment. The final GHS 10,000 is due after client sign-off and before live deployment.</p>
+        </div>
+        <div class="term-card">
+          <div class="term-lbl">Legal Documents</div>
+          <p class="term-val">The purchase agreement generator will produce structured PDFs based on approved company fields. Final legal wording must be reviewed and approved by UMANIE Homes Africa's legal representative before official use.</p>
+        </div>
+        <div class="term-card">
+          <div class="term-lbl">Third-Party Costs</div>
+          <p class="term-val">If system usage exceeds free-tier limits or premium services are required, additional cloud, storage or email costs will be communicated transparently and billed separately.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- §7 ACCEPTANCE -->
+    <div class="section">
+      <div class="sec-header">
+        <div class="sec-num">7</div>
+        <h2 class="sec-title">Agreement & Acceptance</h2>
+        <div class="sec-rule"></div>
+      </div>
+
+      <div class="parties">
+        <div class="party-card">
+          <div class="party-role">Service Provider</div>
+          <div class="party-name">Pribsons International</div>
+          <p class="party-detail">Technology &amp; Software Development<br>Ghana</p>
+        </div>
+        <div class="party-card">
+          <div class="party-role">Client</div>
+          <div class="party-name">UMANIE Homes Africa</div>
+          <p class="party-detail">Real Estate Development &amp; Sales<br>Ghana</p>
+        </div>
+      </div>
+
+      <p style="font-size:13.5px;">By signing below, all parties confirm they have read, understood and agreed to the project scope, 4-week delivery plan, payment schedule, hosting and support terms outlined in this proposal. A formal service agreement will be prepared between Pribsons International and UMANIE Homes Africa before development commences.</p>
+
+      <div class="sig-grid">
+
+        <div class="sig-block">
+          <div class="sig-space"></div>
+          <span class="sig-company">Pribsons International</span>
+          <div class="sig-line">_______________________________</div>
+          <div class="sig-role">CEO / Administrator — Pribsons International</div>
+          <div class="sig-field">Name: _________________________</div>
+          <div class="sig-field">Date: __________________________</div>
+        </div>
+
+        <div class="sig-block">
+          <div class="sig-space"></div>
+          <span class="sig-company">Pribsons International</span>
+          <div class="sig-line">_______________________________</div>
+          <div class="sig-role">Developer — Pribsons International</div>
+          <div class="sig-field">Name: _________________________</div>
+          <div class="sig-field">Date: __________________________</div>
+        </div>
+
+        <div class="sig-block">
+          <div class="sig-space"></div>
+          <span class="sig-company">UMANIE Homes Africa</span>
+          <div class="sig-line">_______________________________</div>
+          <div class="sig-role">CEO — UMANIE Homes Africa</div>
+          <div class="sig-field">Name: _________________________</div>
+          <div class="sig-field">Date: __________________________</div>
+        </div>
+
+      </div>
+
+      <div class="witness-block">
+        <div class="witness-title">Witness(es)</div>
+        <div class="witness-grid">
+          <div class="sig-block">
+            <div class="sig-space"></div>
+            <div class="sig-line">_______________________________</div>
+            <div class="sig-role">Witness</div>
+            <div class="sig-field">Name: _________________________</div>
+            <div class="sig-field">Contact: _______________________</div>
+            <div class="sig-field">Date: __________________________</div>
+          </div>
+          <div class="sig-block">
+            <div class="sig-space"></div>
+            <div class="sig-line">_______________________________</div>
+            <div class="sig-role">Witness (optional)</div>
+            <div class="sig-field">Name: _________________________</div>
+            <div class="sig-field">Contact: _______________________</div>
+            <div class="sig-field">Date: __________________________</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">Pribsons International × UMANIE Homes Africa</div>
+    <div class="footer-right">
+      <div class="footer-ref">Confidential · Ref: UHA-CRM-001 · May 2026</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

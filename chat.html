@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMANIE Homes – Project Proposal | Pribsons International</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --dark: #0F0E0C;
+    --ink: #1C1A16;
+    --text: #3A3730;
+    --muted: #7A7568;
+    --cream: #F8F4EC;
+    --warm: #F0EAD6;
+    --border: #DDD5C0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  @media print {
+    body { background: white; }
+    .no-print { display: none; }
+    .page { page-break-inside: avoid; }
+  }
+
+  .document {
+    max-width: 860px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 4px 60px rgba(0,0,0,0.08);
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--ink);
+    color: white;
+    padding: 70px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 60px;
+  }
+
+  .dev-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+
+
+  .brand-lockup {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .provider-logo {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+    background: rgba(255,255,255,0.96);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 8px;
+    padding: 6px;
+  }
+
+  .date-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    text-align: right;
+  }
+
+  .cover h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .cover h1 span {
+    color: var(--gold);
+  }
+
+  .cover-subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 30px;
+  }
+
+  .cover-meta-item {
+    padding-right: 30px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    padding-left: 0;
+  }
+
+  .cover-meta-item:first-child { padding-left: 0; }
+  .cover-meta-item:last-child { border-right: none; padding-left: 30px; padding-right: 0; }
+  .cover-meta-item:nth-child(2) { padding-left: 30px; }
+
+  .meta-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 5px;
+  }
+
+  .meta-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  /* ── BODY ── */
+  .body-content {
+    padding: 0 60px 60px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 50px 0 0;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 40px;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .section-num {
+    width: 32px; height: 32px;
+    background: var(--ink);
+    color: var(--gold);
+    border-radius: 50%;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  p {
+    margin-bottom: 14px;
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  /* ── SCOPE GRID ── */
+  .scope-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .scope-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 16px 18px;
+    border-radius: 2px;
+  }
+
+  .scope-card-title {
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .scope-card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ── PHASES ── */
+  .phase-list { display: flex; flex-direction: column; gap: 0; }
+
+  .phase {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0;
+    position: relative;
+  }
+
+  .phase:not(:last-child) .phase-right::before {
+    content: '';
+    position: absolute;
+    left: 180px;
+    top: 38px;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+    transform: translateX(17px);
+  }
+
+  .phase-left {
+    padding: 18px 24px 18px 0;
+    border-right: 1px solid var(--border);
+    text-align: right;
+  }
+
+  .phase-num {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 2px;
+    margin-bottom: 6px;
+  }
+
+  .phase-name {
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .phase-duration {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .phase-right {
+    padding: 18px 0 18px 24px;
+    position: relative;
+  }
+
+  .phase-dot {
+    position: absolute;
+    left: -5px;
+    top: 24px;
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+
+  .phase-deliverables {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .phase-deliverables li {
+    font-size: 13px;
+    color: var(--text);
+    padding: 2px 0;
+    padding-left: 14px;
+    position: relative;
+    margin: 0;
+  }
+
+  .phase-deliverables li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* ── PAYMENT TABLE ── */
+  .payment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+  }
+
+  .payment-table th {
+    background: var(--ink);
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 12px 16px;
+    text-align: left;
+  }
+
+  .payment-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text);
+    vertical-align: top;
+  }
+
+  .payment-table tr:last-child td { border-bottom: none; }
+
+  .payment-table tr:nth-child(even) td {
+    background: var(--cream);
+  }
+
+  .amount-cell {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .highlight-row td {
+    background: #FBF6E8 !important;
+    border-top: 2px solid var(--gold) !important;
+    border-bottom: 2px solid var(--gold) !important;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  .badge-gold { background: #FBF6E8; color: var(--gold); border: 1px solid var(--gold-light); }
+  .badge-dark { background: var(--ink); color: var(--gold); }
+  .badge-green { background: #EBF5EE; color: #2E7D4F; border: 1px solid #A8D5B5; }
+
+  /* ── TOTAL BOX ── */
+  .total-box {
+    background: var(--ink);
+    color: white;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    border-radius: 2px;
+  }
+
+  .total-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 4px;
+  }
+
+  .total-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .total-note {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+  }
+
+  .total-right {
+    text-align: right;
+  }
+
+  .initial-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* ── OUT OF SCOPE ── */
+  .oos-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .oos-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    background: var(--cream);
+    border-radius: 2px;
+    border: 1px solid var(--border);
+  }
+
+  .oos-x {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: #FDECEA;
+    color: #C0392B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  /* ── TERMS ── */
+  .terms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .term-item {
+    padding: 16px 18px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+
+  .term-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .term-value {
+    font-size: 13.5px;
+    color: var(--ink);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  /* ── SIGNATURE ── */
+  .signature-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+  }
+
+  .sig-block {
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+
+  .sig-name {
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .sig-title {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .footer-text {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── PRINT BUTTON ── */
+  .print-bar {
+    background: var(--warm);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 60px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .print-btn {
+    background: var(--ink);
+    color: var(--gold);
+    border: none;
+    padding: 10px 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+
+  .print-btn:hover { background: #2C2A22; }
+
+  .note-box {
+    background: #FBF6E8;
+    border: 1px solid var(--gold-light);
+    border-left: 3px solid var(--gold);
+    padding: 14px 18px;
+    border-radius: 2px;
+    margin-top: 16px;
+  }
+
+  .note-box p {
+    font-size: 12.5px;
+    color: var(--text);
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    .cover, .body-content, .footer, .print-bar { padding-left: 24px; padding-right: 24px; }
+    .cover h1 { font-size: 38px; }
+    .cover-meta, .scope-grid, .oos-list, .terms-grid, .signature-area, .signature-area-three { grid-template-columns: 1fr !important; }
+    .cover-meta-item, .cover-meta-item:nth-child(2), .cover-meta-item:last-child { padding-left: 0; padding-right: 0; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 14px; }
+    .phase { grid-template-columns: 1fr; }
+    .phase-left { text-align: left; border-right: none; padding-bottom: 0; }
+    .phase-right { padding-left: 0; }
+    .phase-dot, .phase:not(:last-child) .phase-right::before { display: none; }
+    .payment-table { display: block; overflow-x: auto; }
+  }
+
+  .signature-area-three {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px;
+    margin-top: 30px;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="document">
+
+  <!-- Print Bar -->
+  <div class="print-bar no-print">
+    <button class="print-btn" onclick="window.print()">⬇ Save / Print PDF</button>
+  </div>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-top">
+      <div class="brand-lockup">
+        <img class="provider-logo" src="logo.jpeg" alt="Pribsons International logo">
+        <div class="dev-label">Project Proposal</div>
+      </div>
+      <div class="date-label">Prepared: May 2026<br>Ref: UHA-CRM-001</div>
+    </div>
+
+    <h1>UMANIE Homes<br><span>Operations CRM</span></h1>
+    <p class="cover-subtitle">Real Estate Sales, Project, Construction Costing & Property Management System</p>
+
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="meta-label">Prepared By</div>
+        <div class="meta-value">Pribsons International</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="meta-label">Prepared For</div>
+        <div class="meta-value">UMANIE Homes Africa</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="meta-label">Total Investment</div>
+        <div class="meta-value">GHS 25,000</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="meta-label">Initial Payment</div>
+        <div class="meta-value">GHS 15,000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body-content">
+
+    <!-- 1. OVERVIEW -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <h2 class="section-title">Project Overview</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <p>This proposal covers the design, development, deployment and launch support of a custom <strong>Real Estate Operations CRM</strong> for UMANIE Homes Africa — a complete business management platform that goes far beyond a standard CRM.</p>
+
+      <p>The system is designed to manage the full lifecycle of your real estate and development operations: from construction project tracking, materials and labour costing, lead management, and property sales, through to invoicing, purchase agreement generation, client reviews, and eventually property management.</p>
+
+      <p>The first functional launch will be optimised for a lean team (CEO + Customer Service), with the architecture built to scale as you add roles like Project Manager, Sales Officer, Accountant, and Property Manager.</p>
+
+      <div class="note-box">
+        <p><strong>Not just a CRM.</strong> This is a full real estate development, sales, construction costing, document, review, hosting-supported, and property management operations platform — built specifically for UMANIE Homes Africa.</p>
+      </div>
+      <div class="note-box">
+        <p><strong>Submission format.</strong> This proposal may be shared as a live preview link and as a downloadable PDF for review, printing, internal sharing and signing.</p>
+      </div>
+    </div>
+
+    <!-- 2. SCOPE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <h2 class="section-title">Scope of Work</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <p>The following modules are included in this engagement:</p>
+
+      <div class="scope-grid">
+        <div class="scope-card">
+          <div class="scope-card-title">📊 Dashboard</div>
+          <p class="scope-card-desc">Full business overview: leads, active projects, properties, payments, follow-ups, and recent activities.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">👥 Leads & Clients</div>
+          <p class="scope-card-desc">Lead stages, follow-up history, site visit tracking, lead source, client type, and linked records.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">🏗️ Projects & Properties</div>
+          <p class="scope-card-desc">Construction project tracking, progress status, convert project to property/units, full project profiles.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">📦 Project Inventory</div>
+          <p class="scope-card-desc">Materials tracking with stock-in and stock-out, supplier records, remaining stock calculations.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">👷 Workmanship / Labour</div>
+          <p class="scope-card-desc">Worker/team payment tracking per project. Feeds into total project cost automatically.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">🧾 Project Expenses</div>
+          <p class="scope-card-desc">Other expenses: transport, permits, equipment, tools, etc. Full budget vs actual view.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">📈 Sales Pipeline</div>
+          <p class="scope-card-desc">From new enquiry to closed sale and handover. Reservations, discounts, and payment plans.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">💰 Payments, Invoices & Receipts</div>
+          <p class="scope-card-desc">Full payment tracking, overdue alerts, branded PDF invoices and receipts generation.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">📄 Purchase Agreement Generator</div>
+          <p class="scope-card-desc">Auto-populate agreements from client and property data. Preview, download, and print as PDF.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">🗂️ Document Management</div>
+          <p class="scope-card-desc">Organised document storage by client, project, property, and agreement type.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">⭐ Customer Review System</div>
+          <p class="scope-card-desc">Review alerts, digital form links, printable PDFs, approval workflow, and review history.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">🏢 Property Management Module</div>
+          <p class="scope-card-desc">Tenants, landlords, rent collection, maintenance requests, inspections, and management fees.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">📋 Reports</div>
+          <p class="scope-card-desc">Sales, payment, project cost, inventory, lead conversion, and staff activity reports.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">⚙️ User Roles & Activity Logs</div>
+          <p class="scope-card-desc">CEO, Customer Service, and future roles. Full audit trail of all actions in the system.</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-card-title">🌐 Deployment & Hosting Setup</div>
+          <p class="scope-card-desc">System deployment, hosting setup, database configuration, SSL setup and launch preparation. Suitable free-tier cloud infrastructure may be used where usage allows.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. DELIVERY PHASES -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <h2 class="section-title">Delivery Phases & Timeline</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <p>The project will be delivered as a focused <strong>5-week functional launch</strong>, subject to timely feedback, prompt access to required information, and no major scope changes after sign-off. This timeline is designed to allow proper build quality, testing, deployment preparation, client review and launch support.</p>
+
+      <div class="phase-list">
+
+        <div class="phase">
+          <div class="phase-left">
+            <div class="phase-num">Phase 1</div>
+            <div class="phase-name">Foundation, Architecture & Core Setup</div>
+            <div class="phase-duration">Week 1</div>
+          </div>
+          <div class="phase-right">
+            <div class="phase-dot"></div>
+            <ul class="phase-deliverables">
+              <li>Project setup, database architecture and authentication</li>
+              <li>User roles & permissions (CEO, Customer Service and future roles)</li>
+              <li>Activity logs & audit trail</li>
+              <li>Company profile, settings and base dashboard layout</li>
+              <li>Deployment environment and hosting setup preparation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-left">
+            <div class="phase-num">Phase 2</div>
+            <div class="phase-name">CRM, Leads, Projects & Properties</div>
+            <div class="phase-duration">Week 2</div>
+          </div>
+          <div class="phase-right">
+            <div class="phase-dot"></div>
+            <ul class="phase-deliverables">
+              <li>Leads & Clients module with stages, notes and follow-up history</li>
+              <li>Follow-ups & Site Visits</li>
+              <li>Projects module with construction status tracking</li>
+              <li>Properties / Units module</li>
+              <li>Convert Project → Property/Unit feature</li>
+              <li>Core dashboard data connection</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-left">
+            <div class="phase-num">Phase 3</div>
+            <div class="phase-name">Inventory, Labour, Expenses & Costing</div>
+            <div class="phase-duration">Week 3</div>
+          </div>
+          <div class="phase-right">
+            <div class="phase-dot"></div>
+            <ul class="phase-deliverables">
+              <li>Project Inventory with stock-in and stock-out</li>
+              <li>Workmanship / Labour tracking</li>
+              <li>Project Expenses tracking</li>
+              <li>Project cost calculator and budget vs actual view</li>
+              <li>Mid-project working demo for review and feedback</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-left">
+            <div class="phase-num">Phase 4</div>
+            <div class="phase-name">Sales, Payments, Documents & Reviews</div>
+            <div class="phase-duration">Week 4</div>
+          </div>
+          <div class="phase-right">
+            <div class="phase-dot"></div>
+            <ul class="phase-deliverables">
+              <li>Sales Pipeline module</li>
+              <li>Payment Plans & Installment tracking</li>
+              <li>Invoice and receipt generation (branded PDF)</li>
+              <li>Purchase Agreement Generator (PDF)</li>
+              <li>Document Management module</li>
+              <li>Customer Review System (digital link and printable form)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-left">
+            <div class="phase-num">Phase 5</div>
+            <div class="phase-name">Property Management, Reports & Launch</div>
+            <div class="phase-duration">Week 5</div>
+          </div>
+          <div class="phase-right">
+            <div class="phase-dot"></div>
+            <ul class="phase-deliverables">
+              <li>Property Management module foundation</li>
+              <li>Tenant, Landlord, Rent and Maintenance tracking</li>
+              <li>Reports module</li>
+              <li>Final QA, testing, deployment and launch readiness checks</li>
+              <li>Admin training session and handover support</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 4. PAYMENT -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <h2 class="section-title">Investment & Payment Schedule</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <table class="payment-table">
+        <thead>
+          <tr>
+            <th>Milestone</th>
+            <th>When</th>
+            <th>Amount (GHS)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td>
+              <strong>Initial Payment</strong><br>
+              <span style="font-size:12px;color:var(--muted);">Project kickoff — planning, design, architecture, hosting setup and core development begins</span>
+            </td>
+            <td>Upon agreement signing</td>
+            <td class="amount-cell">GHS 15,000</td>
+            <td><span class="badge badge-gold">Due Now</span></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Final Payment</strong><br>
+              <span style="font-size:12px;color:var(--muted);">Upon project completion — before final handover/live deployment after QA, training and launch readiness confirmation</span>
+            </td>
+            <td>Upon completion</td>
+            <td class="amount-cell">GHS 10,000</td>
+            <td><span class="badge badge-dark">Upcoming</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note-box">
+        <p><strong>Payment structure.</strong> This engagement is billed in two payments only: GHS 15,000 initial payment to begin development and GHS 10,000 final payment upon completion, before final handover/live deployment.</p>
+      </div>
+
+      <div class="total-box">
+        <div>
+          <div class="total-label">Total Project Investment</div>
+          <div class="total-amount">GHS 25,000</div>
+          <div class="total-note">Development, deployment and initial hosting setup included. Ongoing monthly support and premium third-party costs billed separately.</div>
+        </div>
+        <div class="total-right">
+          <div class="total-label">To Start Development</div>
+          <div class="initial-amount">GHS 15,000</div>
+          <div class="total-note">60% initial payment required</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. OUT OF SCOPE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <h2 class="section-title">Out of Scope (First Build)</h2>
+        <div class="section-line"></div>
+      </div>
+      <p>The following are not included in this engagement but can be quoted separately upon request. Deployment and initial hosting setup are included; ongoing support, domain costs and any premium third-party cloud usage costs are handled separately:</p>
+      <div class="oos-list">
+        <div class="oos-item"><div class="oos-x">✕</div>Mobile application (iOS / Android)</div>
+        <div class="oos-item"><div class="oos-x">✕</div>WhatsApp API automation</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Payment gateway integration</div>
+        <div class="oos-item"><div class="oos-x">✕</div>E-signature integration</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Public customer login portal</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Advanced HR / payroll system</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Full accounting software integration</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Custom domain purchase/renewal fees</div>
+        <div class="oos-item"><div class="oos-x">✕</div>Major post-launch feature expansions</div>
+      </div>
+    </div>
+
+    <!-- 6. TERMS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">6</div>
+        <h2 class="section-title">Key Terms & Conditions</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="terms-grid">
+        <div class="term-item">
+          <div class="term-label">Functional Launch Timeline</div>
+          <p class="term-value">Target delivery is 5 weeks for a functional launch, subject to timely feedback, prompt access to required content, and no major scope changes after sign-off.</p>
+        </div>
+        <div class="term-item">
+          <div class="term-label">Feedback Turnaround</div>
+          <p class="term-value">Client feedback should be provided within 24–72 hours during development to maintain the 5-week launch timeline.</p>
+        </div>
+        <div class="term-item">
+          <div class="term-label">Hosting & Deployment</div>
+          <p class="term-value">Deployment, hosting setup, database setup and launch configuration are included. Suitable free-tier cloud infrastructure may be used where usage allows. Ongoing hosting management and support will be handled under a monthly plan.</p>
+        </div>
+        <div class="term-item">
+          <div class="term-label">Cloud Usage Costs</div>
+          <p class="term-value">If system usage grows beyond free-tier limits or premium services become necessary, additional third-party cloud, storage, email or hosting costs will be discussed and billed separately.</p>
+        </div>
+        <div class="term-item">
+          <div class="term-label">Custom Domain</div>
+          <p class="term-value">A custom domain or subdomain can be configured when available. Domain purchase, renewal and any premium DNS/email/domain-related fees are billed separately unless otherwise agreed.</p>
+        </div>
+        <div class="term-item">
+          <div class="term-label">Support After Delivery</div>
+          <p class="term-value">30 days of bug-fix support included post-launch. Ongoing support, backups, monitoring, minor improvements and hosting management available from GHS 1,000/month.</p>
+        </div>
+        <div class="term-item">
+          <div class="term-label">Payment</div>
+          <p class="term-value">Development begins upon receipt of the initial payment (GHS 15,000). The final payment (GHS 10,000) is due upon completion and before final handover/live deployment.</p>
+        </div>
+        <div class="term-item">
+          <div class="term-label">Ownership & Data</div>
+          <p class="term-value">UMANIE Homes Africa owns its business data, documents and final system usage rights upon full payment. Source code transfer terms can be agreed separately if required.</p>
+        </div>
+        <div class="term-item">
+          <div class="term-label">Scope Changes</div>
+          <p class="term-value">Any new features added after sign-off will be scoped and quoted separately to protect the delivery timeline.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. ACCEPTANCE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">7</div>
+        <h2 class="section-title">Acceptance</h2>
+        <div class="section-line"></div>
+      </div>
+      <p>By signing below, both parties acknowledge review and acceptance of the proposal scope, launch timeline, payment schedule, hosting setup arrangement, and support terms outlined above. A formal service agreement should be prepared between Pribsons International and UMANIE Homes Africa before development begins.</p>
+
+      <div class="signature-area-three">
+        <div class="sig-block">
+          <div style="height:50px;"></div>
+          <div class="sig-name">___________________________</div>
+          <div class="sig-title">Pribsons International — Representative 1</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">Name: _______________</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">Date: _______________</div>
+        </div>
+        <div class="sig-block">
+          <div style="height:50px;"></div>
+          <div class="sig-name">___________________________</div>
+          <div class="sig-title">Pribsons International — Representative 2</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">Name: _______________</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">Date: _______________</div>
+        </div>
+        <div class="sig-block">
+          <div style="height:50px;"></div>
+          <div class="sig-name">___________________________</div>
+          <div class="sig-title">UMANIE Homes Africa — Authorised Signatory</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">Name: _______________</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">Date: _______________</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body-content -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">Pribsons International × UMANIE Homes Africa</div>
+    <div class="footer-text">Confidential · Ref: UHA-CRM-001</div>
+  </div>
+
+</div>
+
+</body>
+</html>
