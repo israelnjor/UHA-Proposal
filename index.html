@@ -26,6 +26,11 @@
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
 body {
   font-family: 'DM Sans', sans-serif;
   background: #EDEAE3;
@@ -33,13 +38,29 @@ body {
   font-size: 14px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
 @media print {
-  body { background: white; font-size: 13px; }
+  body { background: white; font-size: 13px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .no-print { display: none !important; }
   .document { box-shadow: none; }
   .section { page-break-inside: avoid; }
+  .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .stack-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .total-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .sec-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .phase-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pay-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pay-table tr.featured td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .scope-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .sig-company { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .callout { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .checkpoint { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .oos-x { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 
 .document {
