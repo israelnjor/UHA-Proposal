@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', sans-serif; background:#F0F4F7; display:flex; height:100vh; width:1400px; }
+
+/* SIDEBAR */
+.sidebar {
+  width:220px; background:#0D5271; display:flex; flex-direction:column;
+  padding:0; flex-shrink:0; height:100vh;
+}
+.sidebar-logo {
+  padding:22px 20px 18px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  display:flex; align-items:center; gap:10px;
+}
+.logo-circle {
+  width:36px; height:36px; background:white; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; font-weight:900; color:#0D5271;
+}
+.logo-text { color:white; font-size:13px; font-weight:700; line-height:1.3; }
+.logo-sub { color:rgba(255,255,255,0.45); font-size:10px; }
+
+.nav-section { padding:18px 0 6px; }
+.nav-label { padding:4px 20px; font-size:9px; color:rgba(255,255,255,0.3); letter-spacing:2px; text-transform:uppercase; }
+.nav-item {
+  display:flex; align-items:center; gap:10px;
+  padding:9px 20px; font-size:12.5px; color:rgba(255,255,255,0.65);
+  cursor:pointer; transition:all 0.15s;
+}
+.nav-item.active { background:rgba(255,255,255,0.12); color:white; border-left:3px solid #C9A84C; padding-left:17px; }
+.nav-item:hover:not(.active) { background:rgba(255,255,255,0.06); color:white; }
+.nav-icon { font-size:14px; width:18px; text-align:center; }
+
+/* MAIN */
+.main { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+
+/* TOPBAR */
+.topbar {
+  background:white; padding:14px 28px;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:1px solid #E2E8EE;
+  box-shadow:0 1px 4px rgba(0,0,0,0.05);
+}
+.topbar-title { font-size:18px; font-weight:700; color:#0D5271; }
+.topbar-sub { font-size:11.5px; color:#8AAABF; margin-top:1px; }
+.topbar-right { display:flex; align-items:center; gap:16px; }
+.topbar-date { font-size:11.5px; color:#8AAABF; }
+.avatar { width:34px; height:34px; background:#0D5271; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:12px; font-weight:700; }
+.notif { position:relative; }
+.notif-dot { position:absolute; top:-2px; right:-2px; width:8px; height:8px; background:#E74C3C; border-radius:50%; border:2px solid white; }
+
+/* CONTENT */
+.content { flex:1; padding:24px 28px; overflow-y:auto; }
+
+/* STAT CARDS */
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:22px; }
+.stat-card {
+  background:white; border-radius:10px; padding:18px 20px;
+  box-shadow:0 1px 6px rgba(0,0,0,0.06); border:1px solid #EDF2F7;
+  display:flex; flex-direction:column; gap:4px; position:relative; overflow:hidden;
+}
+.stat-card::before {
+  content:''; position:absolute; top:0; left:0; width:4px; height:100%;
+}
+.stat-card.teal::before { background:#0D5271; }
+.stat-card.gold::before { background:#C9A84C; }
+.stat-card.green::before { background:#27AE60; }
+.stat-card.red::before { background:#E74C3C; }
+.stat-card.purple::before { background:#8E44AD; }
+.stat-card.orange::before { background:#E67E22; }
+.stat-card.blue::before { background:#2980B9; }
+.stat-card.dark::before { background:#2C3E50; }
+
+.stat-label { font-size:11px; color:#8AAABF; font-weight:500; text-transform:uppercase; letter-spacing:0.8px; }
+.stat-value { font-size:28px; font-weight:800; color:#0D5271; line-height:1.1; }
+.stat-sub { font-size:10.5px; color:#A0B8C8; margin-top:2px; }
+.stat-icon { position:absolute; right:16px; top:50%; transform:translateY(-50%); font-size:28px; opacity:0.12; }
+
+/* STATS ROW 2 */
+.stats-grid-2 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:22px; }
+
+/* BOTTOM GRID */
+.bottom-grid { display:grid; grid-template-columns:1.6fr 1fr; gap:18px; }
+
+/* PANEL */
+.panel { background:white; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,0.06); border:1px solid #EDF2F7; overflow:hidden; }
+.panel-header { padding:14px 20px; border-bottom:1px solid #EDF2F7; display:flex; justify-content:space-between; align-items:center; }
+.panel-title { font-size:13.5px; font-weight:700; color:#0D5271; }
+.panel-link { font-size:11px; color:#C9A84C; font-weight:600; }
+
+/* ACTIVITY */
+.activity-item { padding:11px 20px; border-bottom:1px solid #F5F8FA; display:flex; align-items:flex-start; gap:11px; }
+.activity-item:last-child { border-bottom:none; }
+.activity-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+.activity-text { font-size:12px; color:#3A5568; line-height:1.45; }
+.activity-time { font-size:10.5px; color:#A0B8C8; margin-top:2px; }
+.activity-user { font-weight:600; color:#0D5271; }
+
+/* FOLLOW-UPS */
+.followup-item { padding:11px 20px; border-bottom:1px solid #F5F8FA; display:flex; justify-content:space-between; align-items:center; }
+.followup-item:last-child { border-bottom:none; }
+.followup-name { font-size:12.5px; font-weight:600; color:#1C3A4A; }
+.followup-desc { font-size:11px; color:#8AAABF; margin-top:1px; }
+.badge { padding:3px 9px; border-radius:20px; font-size:10px; font-weight:600; }
+.badge-red { background:#FDECEA; color:#C0392B; }
+.badge-orange { background:#FEF3E2; color:#E67E22; }
+.badge-green { background:#EBF5EE; color:#27AE60; }
+.badge-blue { background:#EBF5FE; color:#2980B9; }
+
+/* PROJECT PROGRESS */
+.project-item { padding:12px 20px; border-bottom:1px solid #F5F8FA; }
+.project-item:last-child { border-bottom:none; }
+.project-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+.project-name { font-size:12.5px; font-weight:600; color:#1C3A4A; }
+.project-pct { font-size:12px; font-weight:700; color:#0D5271; }
+.progress-bar { height:6px; background:#EDF2F7; border-radius:3px; overflow:hidden; }
+.progress-fill { height:100%; border-radius:3px; }
+.project-meta { display:flex; gap:12px; margin-top:4px; }
+.project-meta span { font-size:10.5px; color:#8AAABF; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-circle">U</div>
+    <div>
+      <div class="logo-text">UMANIE Homes</div>
+      <div class="logo-sub">Operations CRM</div>
+    </div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Main</div>
+    <div class="nav-item active"><span class="nav-icon">📊</span> Dashboard</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">CRM</div>
+    <div class="nav-item"><span class="nav-icon">👥</span> Leads</div>
+    <div class="nav-item"><span class="nav-icon">🤝</span> Clients</div>
+    <div class="nav-item"><span class="nav-icon">📅</span> Follow-ups</div>
+    <div class="nav-item"><span class="nav-icon">🗺️</span> Site Visits</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Projects & Properties</div>
+    <div class="nav-item"><span class="nav-icon">🏗️</span> Projects</div>
+    <div class="nav-item"><span class="nav-icon">🏠</span> Properties</div>
+    <div class="nav-item"><span class="nav-icon">📦</span> Inventory</div>
+    <div class="nav-item"><span class="nav-icon">👷</span> Labour</div>
+    <div class="nav-item"><span class="nav-icon">🧾</span> Expenses</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Sales & Payments</div>
+    <div class="nav-item"><span class="nav-icon">📈</span> Sales Pipeline</div>
+    <div class="nav-item"><span class="nav-icon">💰</span> Payments</div>
+    <div class="nav-item"><span class="nav-icon">🧾</span> Invoices</div>
+    <div class="nav-item"><span class="nav-icon">✅</span> Receipts</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">More</div>
+    <div class="nav-item"><span class="nav-icon">📄</span> Agreements</div>
+    <div class="nav-item"><span class="nav-icon">⭐</span> Reviews</div>
+    <div class="nav-item"><span class="nav-icon">🏢</span> Property Mgmt</div>
+    <div class="nav-item"><span class="nav-icon">📋</span> Reports</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">Good morning, CEO 👋</div>
+      <div class="topbar-sub">Here's what's happening with UMANIE Homes today</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-date">Friday, 30 May 2026</div>
+      <div class="notif" style="font-size:20px; cursor:pointer;">🔔<div class="notif-dot"></div></div>
+      <div class="avatar">AK</div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- ROW 1 STATS -->
+    <div class="stats-grid">
+      <div class="stat-card teal">
+        <div class="stat-label">Total Leads</div>
+        <div class="stat-value">87</div>
+        <div class="stat-sub">↑ 12 this month</div>
+        <div class="stat-icon">👥</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Active Clients</div>
+        <div class="stat-value">34</div>
+        <div class="stat-sub">↑ 4 this week</div>
+        <div class="stat-icon">🤝</div>
+      </div>
+      <div class="stat-card gold" style="border-left-color:#C9A84C">
+        <div class="stat-label">Active Projects</div>
+        <div class="stat-value">6</div>
+        <div class="stat-sub">3 under construction</div>
+        <div class="stat-icon">🏗️</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-label">Available Properties</div>
+        <div class="stat-value">14</div>
+        <div class="stat-sub">5 reserved · 9 open</div>
+        <div class="stat-icon">🏠</div>
+      </div>
+    </div>
+
+    <!-- ROW 2 STATS -->
+    <div class="stats-grid-2">
+      <div class="stat-card orange">
+        <div class="stat-label">Pending Payments</div>
+        <div class="stat-value">GHS 148,500</div>
+        <div class="stat-sub">Across 11 clients</div>
+        <div class="stat-icon">💰</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-label">Overdue Payments</div>
+        <div class="stat-value">GHS 32,000</div>
+        <div class="stat-sub">3 clients overdue</div>
+        <div class="stat-icon">⚠️</div>
+      </div>
+      <div class="stat-card purple">
+        <div class="stat-label">Total Project Cost</div>
+        <div class="stat-value">GHS 892,400</div>
+        <div class="stat-sub">Across 6 projects</div>
+        <div class="stat-icon">📊</div>
+      </div>
+      <div class="stat-card dark">
+        <div class="stat-label">Follow-ups Due Today</div>
+        <div class="stat-value">7</div>
+        <div class="stat-sub">2 overdue from yesterday</div>
+        <div class="stat-icon">📅</div>
+      </div>
+    </div>
+
+    <!-- BOTTOM PANELS -->
+    <div class="bottom-grid">
+
+      <!-- ACTIVITY FEED -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">🕓 Recent Activity</div>
+          <div class="panel-link">View all →</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:#27AE60"></div>
+          <div>
+            <div class="activity-text"><span class="activity-user">Ama Owusu</span> added a new lead — <strong>Kwame Asante</strong> (Referral · 3-bedroom duplex)</div>
+            <div class="activity-time">2 minutes ago</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:#C9A84C"></div>
+          <div>
+            <div class="activity-text"><span class="activity-user">CEO</span> generated Invoice <strong>#INV-0047</strong> for Abena Mensah — GHS 45,000</div>
+            <div class="activity-time">18 minutes ago</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:#0D5271"></div>
+          <div>
+            <div class="activity-text"><span class="activity-user">Ama Owusu</span> updated project status — <strong>East Legon Duplex</strong> moved to Roofing stage</div>
+            <div class="activity-time">1 hour ago</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:#8E44AD"></div>
+          <div>
+            <div class="activity-text"><span class="activity-user">CEO</span> approved review from <strong>Kofi & Ama Boateng</strong> — 5 stars ⭐⭐⭐⭐⭐</div>
+            <div class="activity-time">3 hours ago</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:#E74C3C"></div>
+          <div>
+            <div class="activity-text"><span class="activity-user">System</span> flagged <strong>Akua Frimpong</strong> payment as overdue — GHS 12,000 (14 days late)</div>
+            <div class="activity-time">5 hours ago</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:#27AE60"></div>
+          <div>
+            <div class="activity-text"><span class="activity-user">CEO</span> marked sale <strong>#SALE-0021</strong> as Closed — Tema Townhouse Unit 3 sold to Nana Yaw Adu</div>
+            <div class="activity-time">Yesterday, 4:32 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div style="display:flex; flex-direction:column; gap:18px;">
+
+        <!-- FOLLOW-UPS -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">📅 Follow-ups Due Today</div>
+            <div class="panel-link">View all →</div>
+          </div>
+          <div class="followup-item">
+            <div>
+              <div class="followup-name">Yaw Darko</div>
+              <div class="followup-desc">Call re: duplex site visit booking</div>
+            </div>
+            <span class="badge badge-red">Overdue</span>
+          </div>
+          <div class="followup-item">
+            <div>
+              <div class="followup-name">Grace Asiedu</div>
+              <div class="followup-desc">Send payment plan options</div>
+            </div>
+            <span class="badge badge-orange">Due Today</span>
+          </div>
+          <div class="followup-item">
+            <div>
+              <div class="followup-name">Samuel Ofori</div>
+              <div class="followup-desc">Follow up after site visit feedback</div>
+            </div>
+            <span class="badge badge-orange">Due Today</span>
+          </div>
+          <div class="followup-item">
+            <div>
+              <div class="followup-name">Mawuli Adzaho</div>
+              <div class="followup-desc">Negotiation — final price agreement</div>
+            </div>
+            <span class="badge badge-blue">Upcoming</span>
+          </div>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">🏗️ Project Progress</div>
+            <div class="panel-link">View all →</div>
+          </div>
+          <div class="project-item">
+            <div class="project-row">
+              <div class="project-name">East Legon Duplex</div>
+              <div class="project-pct">72%</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:72%;background:#0D5271;"></div></div>
+            <div class="project-meta"><span>Roofing Stage</span><span>GHS 284,000 spent</span></div>
+          </div>
+          <div class="project-item">
+            <div class="project-row">
+              <div class="project-name">Tema Townhouse (4 Units)</div>
+              <div class="project-pct">95%</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:95%;background:#27AE60;"></div></div>
+            <div class="project-meta"><span>Finishing</span><span>GHS 412,000 spent</span></div>
+          </div>
+          <div class="project-item">
+            <div class="project-row">
+              <div class="project-name">Adenta Apartment Block</div>
+              <div class="project-pct">38%</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:38%;background:#C9A84C;"></div></div>
+            <div class="project-meta"><span>Structure</span><span>GHS 196,400 spent</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

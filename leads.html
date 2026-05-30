@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', sans-serif; background:#F0F4F7; display:flex; height:100vh; width:1400px; }
+
+.sidebar { width:220px; background:#0D5271; flex-shrink:0; height:100vh; padding-top:0; }
+.sidebar-logo { padding:22px 20px 18px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; gap:10px; }
+.logo-circle { width:36px; height:36px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; color:#0D5271; }
+.logo-text { color:white; font-size:13px; font-weight:700; }
+.logo-sub { color:rgba(255,255,255,0.45); font-size:10px; }
+.nav-section { padding:18px 0 6px; }
+.nav-label { padding:4px 20px; font-size:9px; color:rgba(255,255,255,0.3); letter-spacing:2px; text-transform:uppercase; }
+.nav-item { display:flex; align-items:center; gap:10px; padding:9px 20px; font-size:12.5px; color:rgba(255,255,255,0.65); }
+.nav-item.active { background:rgba(255,255,255,0.12); color:white; border-left:3px solid #C9A84C; padding-left:17px; }
+.nav-icon { font-size:14px; width:18px; text-align:center; }
+
+.main { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+.topbar { background:white; padding:14px 28px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #E2E8EE; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+.topbar-title { font-size:18px; font-weight:700; color:#0D5271; }
+.topbar-sub { font-size:11.5px; color:#8AAABF; margin-top:1px; }
+.topbar-right { display:flex; align-items:center; gap:12px; }
+.avatar { width:34px; height:34px; background:#0D5271; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:12px; font-weight:700; }
+.btn { padding:9px 18px; border-radius:6px; font-size:12.5px; font-weight:600; cursor:pointer; border:none; }
+.btn-primary { background:#0D5271; color:white; }
+.btn-secondary { background:white; color:#0D5271; border:1.5px solid #0D5271; }
+
+.content { flex:1; padding:22px 28px; overflow-y:auto; }
+
+/* FILTERS */
+.filter-bar { display:flex; gap:10px; margin-bottom:18px; align-items:center; flex-wrap:wrap; }
+.search-box { flex:1; max-width:280px; position:relative; }
+.search-box input { width:100%; padding:9px 14px 9px 36px; border:1.5px solid #DDE4EB; border-radius:8px; font-size:12.5px; color:#3A5568; background:white; outline:none; }
+.search-icon { position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:14px; color:#8AAABF; }
+.filter-select { padding:9px 14px; border:1.5px solid #DDE4EB; border-radius:8px; font-size:12.5px; color:#3A5568; background:white; outline:none; cursor:pointer; }
+.filter-active { border-color:#0D5271; color:#0D5271; background:#EAF4F8; }
+
+/* PIPELINE SUMMARY */
+.pipeline-summary { display:grid; grid-template-columns:repeat(9,1fr); gap:6px; margin-bottom:20px; }
+.stage-pill { background:white; border:1.5px solid #EDF2F7; border-radius:8px; padding:10px 8px; text-align:center; }
+.stage-pill.active-stage { border-color:#0D5271; background:#EAF4F8; }
+.stage-count { font-size:18px; font-weight:800; color:#0D5271; }
+.stage-label { font-size:9.5px; color:#8AAABF; margin-top:2px; line-height:1.3; }
+
+/* TABLE */
+.table-wrap { background:white; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,0.06); border:1px solid #EDF2F7; overflow:hidden; }
+.table-header-bar { padding:14px 20px; border-bottom:1px solid #EDF2F7; display:flex; justify-content:space-between; align-items:center; }
+.table-title { font-size:13.5px; font-weight:700; color:#0D5271; }
+.table-count { font-size:11.5px; color:#8AAABF; }
+
+table { width:100%; border-collapse:collapse; }
+thead tr { background:#F7FAFC; }
+th { padding:10px 16px; text-align:left; font-size:10.5px; font-weight:700; color:#8AAABF; text-transform:uppercase; letter-spacing:0.8px; border-bottom:1px solid #EDF2F7; }
+td { padding:13px 16px; font-size:12.5px; color:#1C3A4A; border-bottom:1px solid #F5F8FA; vertical-align:middle; }
+tr:last-child td { border-bottom:none; }
+tr:hover td { background:#FAFCFE; }
+
+.client-name { font-weight:700; color:#0D5271; }
+.client-phone { font-size:11px; color:#8AAABF; margin-top:1px; }
+
+.badge { padding:4px 10px; border-radius:20px; font-size:10.5px; font-weight:600; white-space:nowrap; display:inline-block; }
+.badge-new { background:#EAF4F8; color:#0D5271; }
+.badge-contacted { background:#EBF5FE; color:#2980B9; }
+.badge-qualified { background:#EEF3FB; color:#5B2D8E; }
+.badge-visit { background:#FEF3E2; color:#E67E22; }
+.badge-negotiation { background:#FEF3E2; color:#E67E22; }
+.badge-reserved { background:#FBF6E8; color:#C9A84C; }
+.badge-payment { background:#EBF5EE; color:#27AE60; }
+.badge-purchased { background:#0D5271; color:white; }
+.badge-lost { background:#FDECEA; color:#C0392B; }
+
+.source-tag { display:inline-block; background:#F0F4F7; color:#5A7A8F; padding:2px 7px; border-radius:4px; font-size:10px; font-weight:500; }
+
+.action-btn { background:#EAF4F8; border:none; border-radius:5px; padding:5px 10px; font-size:11px; color:#0D5271; font-weight:600; cursor:pointer; }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-circle">U</div>
+    <div><div class="logo-text">UMANIE Homes</div><div class="logo-sub">Operations CRM</div></div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Main</div>
+    <div class="nav-item"><span class="nav-icon">📊</span> Dashboard</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">CRM</div>
+    <div class="nav-item active"><span class="nav-icon">👥</span> Leads</div>
+    <div class="nav-item"><span class="nav-icon">🤝</span> Clients</div>
+    <div class="nav-item"><span class="nav-icon">📅</span> Follow-ups</div>
+    <div class="nav-item"><span class="nav-icon">🗺️</span> Site Visits</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Projects & Properties</div>
+    <div class="nav-item"><span class="nav-icon">🏗️</span> Projects</div>
+    <div class="nav-item"><span class="nav-icon">🏠</span> Properties</div>
+    <div class="nav-item"><span class="nav-icon">📦</span> Inventory</div>
+    <div class="nav-item"><span class="nav-icon">👷</span> Labour</div>
+    <div class="nav-item"><span class="nav-icon">🧾</span> Expenses</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Sales & Payments</div>
+    <div class="nav-item"><span class="nav-icon">📈</span> Sales Pipeline</div>
+    <div class="nav-item"><span class="nav-icon">💰</span> Payments</div>
+    <div class="nav-item"><span class="nav-icon">🧾</span> Invoices</div>
+    <div class="nav-item"><span class="nav-icon">✅</span> Receipts</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">More</div>
+    <div class="nav-item"><span class="nav-icon">📄</span> Agreements</div>
+    <div class="nav-item"><span class="nav-icon">⭐</span> Reviews</div>
+    <div class="nav-item"><span class="nav-icon">🏢</span> Property Mgmt</div>
+    <div class="nav-item"><span class="nav-icon">📋</span> Reports</div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">Leads & Clients</div>
+      <div class="topbar-sub">Manage your full pipeline from first enquiry to handover</div>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-secondary">Export CSV</button>
+      <button class="btn btn-primary">+ Add New Lead</button>
+      <div class="avatar">AK</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- PIPELINE SUMMARY -->
+    <div class="pipeline-summary">
+      <div class="stage-pill"><div class="stage-count">18</div><div class="stage-label">New Enquiry</div></div>
+      <div class="stage-pill active-stage"><div class="stage-count" style="color:#2980B9">14</div><div class="stage-label">Contacted</div></div>
+      <div class="stage-pill"><div class="stage-count" style="color:#8E44AD">11</div><div class="stage-label">Qualified</div></div>
+      <div class="stage-pill"><div class="stage-count" style="color:#E67E22">9</div><div class="stage-label">Site Visit</div></div>
+      <div class="stage-pill"><div class="stage-count" style="color:#E67E22">7</div><div class="stage-label">Negotiation</div></div>
+      <div class="stage-pill"><div class="stage-count" style="color:#C9A84C">8</div><div class="stage-label">Reserved</div></div>
+      <div class="stage-pill"><div class="stage-count" style="color:#27AE60">6</div><div class="stage-label">Payment</div></div>
+      <div class="stage-pill"><div class="stage-count" style="color:#0D5271">9</div><div class="stage-label">Purchased</div></div>
+      <div class="stage-pill"><div class="stage-count" style="color:#C0392B">5</div><div class="stage-label">Lost</div></div>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filter-bar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search by name, phone, email..." value=""/>
+      </div>
+      <select class="filter-select filter-active"><option>All Stages</option></select>
+      <select class="filter-select"><option>All Sources</option></select>
+      <select class="filter-select"><option>All Property Types</option></select>
+      <select class="filter-select"><option>All Assigned Staff</option></select>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrap">
+      <div class="table-header-bar">
+        <div class="table-title">All Leads — 87 records</div>
+        <div class="table-count">Showing 1–10 of 87</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Client Name</th>
+            <th>Phone / WhatsApp</th>
+            <th>Budget</th>
+            <th>Property Interest</th>
+            <th>Lead Source</th>
+            <th>Stage</th>
+            <th>Assigned To</th>
+            <th>Last Contact</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="client-name">Kwame Asante</div><div class="client-phone">kwame.asante@gmail.com</div></td>
+            <td>0244 123 456</td>
+            <td>GHS 280,000</td>
+            <td>3-Bed Duplex · East Legon</td>
+            <td><span class="source-tag">Referral</span></td>
+            <td><span class="badge badge-new">New Enquiry</span></td>
+            <td>Ama Owusu</td>
+            <td>Today, 9:12am</td>
+            <td><button class="action-btn">View →</button></td>
+          </tr>
+          <tr>
+            <td><div class="client-name">Grace Asiedu</div><div class="client-phone">graceasiedu@yahoo.com</div></td>
+            <td>0201 987 654</td>
+            <td>GHS 350,000</td>
+            <td>4-Bed Townhouse · Tema</td>
+            <td><span class="source-tag">Instagram</span></td>
+            <td><span class="badge badge-negotiation">Negotiation</span></td>
+            <td>CEO</td>
+            <td>Yesterday</td>
+            <td><button class="action-btn">View →</button></td>
+          </tr>
+          <tr>
+            <td><div class="client-name">Nana Yaw Adu</div><div class="client-phone">nana.adu@hotmail.com</div></td>
+            <td>0277 456 789</td>
+            <td>GHS 420,000</td>
+            <td>Apartment · Adenta</td>
+            <td><span class="source-tag">Website</span></td>
+            <td><span class="badge badge-purchased">Purchased ✓</span></td>
+            <td>CEO</td>
+            <td>28 May 2026</td>
+            <td><button class="action-btn">View →</button></td>
+          </tr>
+          <tr>
+            <td><div class="client-name">Abena Mensah</div><div class="client-phone">abena.m@gmail.com</div></td>
+            <td>0244 321 654</td>
+            <td>GHS 195,000</td>
+            <td>2-Bed Apartment · Tema</td>
+            <td><span class="source-tag">WhatsApp</span></td>
+            <td><span class="badge badge-payment">Payment Started</span></td>
+            <td>Ama Owusu</td>
+            <td>30 May 2026</td>
+            <td><button class="action-btn">View →</button></td>
+          </tr>
+          <tr>
+            <td><div class="client-name">Kofi Boateng</div><div class="client-phone">kofi.boateng@corp.gh</div></td>
+            <td>0302 111 222</td>
+            <td>GHS 600,000</td>
+            <td>Commercial Unit · Airport</td>
+            <td><span class="source-tag">Agent</span></td>
+            <td><span class="badge badge-reserved">Reserved</span></td>
+            <td>CEO</td>
+            <td>29 May 2026</td>
+            <td><button class="action-btn">View →</button></td>
+          </tr>
+          <tr>
+            <td><div class="client-name">Yaw Darko</div><div class="client-phone">ydarko88@gmail.com</div></td>
+            <td>0559 876 543</td>
+            <td>GHS 240,000</td>
+            <td>3-Bed Duplex · Spintex</td>
+            <td><span class="source-tag">Walk-in</span></td>
+            <td><span class="badge badge-visit">Site Visit Booked</span></td>
+            <td>Ama Owusu</td>
+            <td>27 May 2026</td>
+            <td><button class="action-btn">View →</button></td>
+          </tr>
+          <tr>
+            <td><div class="client-name">Akua Frimpong</div><div class="client-phone">akua.f@diaspora.uk</div></td>
+            <td>+44 7700 900123</td>
+            <td>GHS 500,000</td>
+            <td>4-Bed House · East Legon</td>
+            <td><span class="source-tag">Diaspora</span></td>
+            <td><span class="badge badge-payment">Payment Started</span></td>
+            <td>CEO</td>
+            <td>25 May 2026</td>
+            <td><button class="action-btn">View →</button></td>
+          </tr>
+          <tr>
+            <td><div class="client-name">Samuel Ofori</div><div class="client-phone">sam.ofori@gmail.com</div></td>
+            <td>0267 445 678</td>
+            <td>GHS 180,000</td>
+            <td>2-Bed Apartment · Adenta</td>
+            <td><span class="source-tag">Facebook</span></td>
+            <td><span class="badge badge-qualified">Qualified</span></td>
+            <td>Ama Owusu</td>
+            <td>26 May 2026</td>
+            <td><button class="action-btn">View →</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

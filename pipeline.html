@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', sans-serif; background:#F0F4F7; display:flex; height:100vh; width:1400px; }
+
+.sidebar { width:220px; background:#0D5271; flex-shrink:0; height:100vh; }
+.sidebar-logo { padding:22px 20px 18px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; gap:10px; }
+.logo-circle { width:36px; height:36px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; color:#0D5271; }
+.logo-text { color:white; font-size:13px; font-weight:700; }
+.logo-sub { color:rgba(255,255,255,0.45); font-size:10px; }
+.nav-section { padding:18px 0 6px; }
+.nav-label { padding:4px 20px; font-size:9px; color:rgba(255,255,255,0.3); letter-spacing:2px; text-transform:uppercase; }
+.nav-item { display:flex; align-items:center; gap:10px; padding:9px 20px; font-size:12.5px; color:rgba(255,255,255,0.65); }
+.nav-item.active { background:rgba(255,255,255,0.12); color:white; border-left:3px solid #C9A84C; padding-left:17px; }
+.nav-icon { font-size:14px; width:18px; text-align:center; }
+
+.main { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+.topbar { background:white; padding:12px 28px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #E2E8EE; }
+.topbar-title { font-size:17px; font-weight:700; color:#0D5271; }
+.topbar-sub { font-size:11.5px; color:#8AAABF; margin-top:1px; }
+.topbar-right { display:flex; align-items:center; gap:10px; }
+.btn { padding:8px 16px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; border:none; }
+.btn-primary { background:#0D5271; color:white; }
+.btn-outline { background:white; color:#0D5271; border:1.5px solid #0D5271; }
+.avatar { width:32px; height:32px; background:#0D5271; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:11px; font-weight:700; }
+
+.content { flex:1; padding:18px 28px; overflow:hidden; display:flex; flex-direction:column; }
+
+/* SUMMARY BAR */
+.summary-bar { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:18px; }
+.sum-card { background:white; border-radius:8px; padding:13px 16px; box-shadow:0 1px 4px rgba(0,0,0,0.05); border:1px solid #EDF2F7; border-top:3px solid; }
+.sum-card.c1 { border-top-color:#0D5271; }
+.sum-card.c2 { border-top-color:#C9A84C; }
+.sum-card.c3 { border-top-color:#27AE60; }
+.sum-card.c4 { border-top-color:#E67E22; }
+.sum-card.c5 { border-top-color:#8E44AD; }
+.sum-label { font-size:10px; color:#8AAABF; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:3px; }
+.sum-value { font-size:18px; font-weight:800; color:#0D5271; }
+.sum-sub { font-size:10px; color:#A0B8C8; margin-top:2px; }
+
+/* KANBAN */
+.kanban { flex:1; display:flex; gap:12px; overflow-x:auto; padding-bottom:8px; }
+.kanban-col { min-width:200px; flex:1; display:flex; flex-direction:column; }
+.col-header { padding:10px 14px; border-radius:8px 8px 0 0; display:flex; justify-content:space-between; align-items:center; }
+.col-title { font-size:11.5px; font-weight:700; color:white; }
+.col-count { background:rgba(255,255,255,0.25); color:white; padding:1px 7px; border-radius:20px; font-size:10.5px; font-weight:700; }
+.col-body { background:#EDF2F7; border-radius:0 0 8px 8px; padding:8px; flex:1; display:flex; flex-direction:column; gap:8px; min-height:200px; }
+
+/* DEAL CARD */
+.deal-card { background:white; border-radius:7px; padding:12px 13px; box-shadow:0 1px 4px rgba(0,0,0,0.06); border:1px solid #EDF2F7; cursor:pointer; }
+.deal-card:hover { border-color:#0D5271; }
+.deal-name { font-size:12.5px; font-weight:700; color:#0D5271; margin-bottom:2px; }
+.deal-property { font-size:11px; color:#5A7A8F; margin-bottom:6px; }
+.deal-amount { font-size:13px; font-weight:800; color:#0A2D3D; }
+.deal-meta { display:flex; gap:6px; margin-top:6px; flex-wrap:wrap; }
+.deal-tag { font-size:9.5px; padding:2px 7px; border-radius:4px; font-weight:600; }
+.tag-src { background:#EAF4F8; color:#0D5271; }
+.tag-staff { background:#F0F4F7; color:#5A7A8F; }
+.deal-footer { margin-top:8px; padding-top:7px; border-top:1px solid #F5F8FA; display:flex; justify-content:space-between; align-items:center; }
+.deal-date { font-size:10px; color:#A0B8C8; }
+.deal-action { font-size:10px; color:#C9A84C; font-weight:700; }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-circle">U</div>
+    <div><div class="logo-text">UMANIE Homes</div><div class="logo-sub">Operations CRM</div></div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Main</div>
+    <div class="nav-item"><span class="nav-icon">📊</span> Dashboard</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">CRM</div>
+    <div class="nav-item"><span class="nav-icon">👥</span> Leads</div>
+    <div class="nav-item"><span class="nav-icon">🤝</span> Clients</div>
+    <div class="nav-item"><span class="nav-icon">📅</span> Follow-ups</div>
+    <div class="nav-item"><span class="nav-icon">🗺️</span> Site Visits</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Projects & Properties</div>
+    <div class="nav-item"><span class="nav-icon">🏗️</span> Projects</div>
+    <div class="nav-item"><span class="nav-icon">🏠</span> Properties</div>
+    <div class="nav-item"><span class="nav-icon">📦</span> Inventory</div>
+    <div class="nav-item"><span class="nav-icon">👷</span> Labour</div>
+    <div class="nav-item"><span class="nav-icon">🧾</span> Expenses</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Sales & Payments</div>
+    <div class="nav-item active"><span class="nav-icon">📈</span> Sales Pipeline</div>
+    <div class="nav-item"><span class="nav-icon">💰</span> Payments</div>
+    <div class="nav-item"><span class="nav-icon">🧾</span> Invoices</div>
+    <div class="nav-item"><span class="nav-icon">✅</span> Receipts</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">More</div>
+    <div class="nav-item"><span class="nav-icon">📄</span> Agreements</div>
+    <div class="nav-item"><span class="nav-icon">⭐</span> Reviews</div>
+    <div class="nav-item"><span class="nav-icon">🏢</span> Property Mgmt</div>
+    <div class="nav-item"><span class="nav-icon">📋</span> Reports</div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">Sales Pipeline</div>
+      <div class="topbar-sub">Track every deal from first contact to closed sale</div>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-outline">List View</button>
+      <button class="btn btn-primary">+ New Deal</button>
+      <div class="avatar">AK</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <!-- SUMMARY -->
+    <div class="summary-bar">
+      <div class="sum-card c1"><div class="sum-label">Total Pipeline Value</div><div class="sum-value">GHS 4.2M</div><div class="sum-sub">34 active deals</div></div>
+      <div class="sum-card c2"><div class="sum-label">Reserved</div><div class="sum-value">GHS 1.1M</div><div class="sum-sub">8 properties</div></div>
+      <div class="sum-card c3"><div class="sum-label">Closed This Month</div><div class="sum-value">GHS 715,000</div><div class="sum-sub">3 sales ↑</div></div>
+      <div class="sum-card c4"><div class="sum-label">Payments in Progress</div><div class="sum-value">GHS 580,000</div><div class="sum-sub">6 clients</div></div>
+      <div class="sum-card c5"><div class="sum-label">Avg. Deal Value</div><div class="sum-value">GHS 238,000</div><div class="sum-sub">Based on closed deals</div></div>
+    </div>
+
+    <!-- KANBAN -->
+    <div class="kanban">
+
+      <!-- QUALIFIED -->
+      <div class="kanban-col">
+        <div class="col-header" style="background:#5B2D8E;"><div class="col-title">Qualified</div><div class="col-count">4</div></div>
+        <div class="col-body">
+          <div class="deal-card">
+            <div class="deal-name">Samuel Ofori</div>
+            <div class="deal-property">2-Bed Apt · Adenta</div>
+            <div class="deal-amount">GHS 180,000</div>
+            <div class="deal-meta"><span class="deal-tag tag-src">Facebook</span><span class="deal-tag tag-staff">Ama O.</span></div>
+            <div class="deal-footer"><div class="deal-date">Updated 3d ago</div><div class="deal-action">Open →</div></div>
+          </div>
+          <div class="deal-card">
+            <div class="deal-name">Mawuli Adzaho</div>
+            <div class="deal-property">3-Bed Duplex · Spintex</div>
+            <div class="deal-amount">GHS 295,000</div>
+            <div class="deal-meta"><span class="deal-tag tag-src">Agent</span><span class="deal-tag tag-staff">CEO</span></div>
+            <div class="deal-footer"><div class="deal-date">Updated 1d ago</div><div class="deal-action">Open →</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SITE VISIT -->
+      <div class="kanban-col">
+        <div class="col-header" style="background:#E67E22;"><div class="col-title">Site Visit</div><div class="col-count">5</div></div>
+        <div class="col-body">
+          <div class="deal-card">
+            <div class="deal-name">Yaw Darko</div>
+            <div class="deal-property">3-Bed Duplex · Spintex</div>
+            <div class="deal-amount">GHS 240,000</div>
+            <div class="deal-meta"><span class="deal-tag tag-src">Walk-in</span><span class="deal-tag tag-staff">Ama O.</span></div>
+            <div class="deal-footer"><div class="deal-date">Visit: 1 Jun 2026</div><div class="deal-action">Open →</div></div>
+          </div>
+          <div class="deal-card">
+            <div class="deal-name">Efua Aidoo</div>
+            <div class="deal-property">4-Bed House · East Legon</div>
+            <div class="deal-amount">GHS 480,000</div>
+            <div class="deal-meta"><span class="deal-tag tag-src">Instagram</span><span class="deal-tag tag-staff">CEO</span></div>
+            <div class="deal-footer"><div class="deal-date">Visit: 2 Jun 2026</div><div class="deal-action">Open →</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEGOTIATION -->
+      <div class="kanban-col">
+        <div class="col-header" style="background:#B45309;"><div class="col-title">Negotiation</div><div class="col-count">3</div></div>
+        <div class="col-body">
+          <div class="deal-card">
+            <div class="deal-name">Grace Asiedu</div>
+            <div class="deal-property">4-Bed Townhouse · Tema</div>
+            <div class="deal-amount">GHS 350,000</div>
+            <div class="deal-meta"><span class="deal-tag tag-src">Instagram</span><span class="deal-tag tag-staff">CEO</span></div>
+            <div class="deal-footer"><div class="deal-date">Updated today</div><div class="deal-action">Open →</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESERVED -->
+      <div class="kanban-col">
+        <div class="col-header" style="background:#C9A84C;"><div class="col-title">Reserved</div><div class="col-count">8</div></div>
+        <div class="col-body">
+          <div class="deal-card">
+            <div class="deal-name">Kofi Boateng</div>
+            <div class="deal-property">Commercial Unit · Airport</div>
+            <div class="deal-amount">GHS 600,000</div>
+            <div class="deal-meta"><span class="deal-tag tag-src">Agent</span><span class="deal-tag tag-staff">CEO</span></div>
+            <div class="deal-footer"><div class="deal-date">Reserved 29 May</div><div class="deal-action">Open →</div></div>
+          </div>
+          <div class="deal-card">
+            <div class="deal-name">Aisha Mohammed</div>
+            <div class="deal-property">2-Bed Apt · Adenta Blk A</div>
+            <div class="deal-amount">GHS 165,000</div>
+            <div class="deal-meta"><span class="deal-tag tag-src">WhatsApp</span><span class="deal-tag tag-staff">Ama O.</span></div>
+            <div class="deal-footer"><div class="deal-date">Reserved 22 May</div><div class="deal-action">Open →</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENT STARTED -->
+      <div class="kanban-col">
+        <div class="col-header" style="background:#27AE60;"><div class="col-title">Payment Started</div><div class="col-count">6</div></div>
+        <div class="col-body">
+          <div class="deal-card">
+            <div class="deal-name">Abena Mensah</div>
+            <div class="deal-property">Tema Townhouse – Unit 2</div>
+            <div class="deal-amount">GHS 195,000</div>
+            <div class="deal-meta"><span class="deal-tag tag-src">WhatsApp</span><span class="deal-tag tag-staff">Ama O.</span></div>
+            <div class="deal-footer"><div class="deal-date">2nd instalment due</div><div class="deal-action">Open →</div></div>
+          </div>
+          <div class="deal-card">
+            <div class="deal-name">Akua Frimpong</div>
+            <div class="deal-property">4-Bed House · East Legon</div>
+            <div class="deal-amount">GHS 500,000</div>
+            <div class="deal-meta"><span class="deal-tag tag-src">Diaspora</span><span class="deal-tag tag-staff">CEO</span></div>
+            <div class="deal-footer"><div class="deal-date">⚠️ Overdue 14d</div><div class="deal-action">Open →</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLOSED / WON -->
+      <div class="kanban-col">
+        <div class="col-header" style="background:#0D5271;"><div class="col-title">Closed / Won ✓</div><div class="col-count">9</div></div>
+        <div class="col-body">
+          <div class="deal-card" style="border-left:3px solid #27AE60;">
+            <div class="deal-name">Nana Yaw Adu</div>
+            <div class="deal-property">Tema Townhouse – Unit 3</div>
+            <div class="deal-amount" style="color:#27AE60;">GHS 195,000 ✓</div>
+            <div class="deal-meta"><span class="deal-tag tag-src">Website</span></div>
+            <div class="deal-footer"><div class="deal-date">Closed 28 May 2026</div><div class="deal-action">View →</div></div>
+          </div>
+          <div class="deal-card" style="border-left:3px solid #27AE60;">
+            <div class="deal-name">Kweku Asante-Boateng</div>
+            <div class="deal-property">East Legon Duplex – Unit A</div>
+            <div class="deal-amount" style="color:#27AE60;">GHS 520,000 ✓</div>
+            <div class="deal-meta"><span class="deal-tag tag-src">Referral</span></div>
+            <div class="deal-footer"><div class="deal-date">Closed 15 May 2026</div><div class="deal-action">View →</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', sans-serif; background:#F0F4F7; display:flex; height:100vh; width:1400px; }
+
+.sidebar { width:220px; background:#0D5271; flex-shrink:0; height:100vh; }
+.sidebar-logo { padding:22px 20px 18px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; gap:10px; }
+.logo-circle { width:36px; height:36px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; color:#0D5271; }
+.logo-text { color:white; font-size:13px; font-weight:700; }
+.logo-sub { color:rgba(255,255,255,0.45); font-size:10px; }
+.nav-section { padding:18px 0 6px; }
+.nav-label { padding:4px 20px; font-size:9px; color:rgba(255,255,255,0.3); letter-spacing:2px; text-transform:uppercase; }
+.nav-item { display:flex; align-items:center; gap:10px; padding:9px 20px; font-size:12.5px; color:rgba(255,255,255,0.65); }
+.nav-item.active { background:rgba(255,255,255,0.12); color:white; border-left:3px solid #C9A84C; padding-left:17px; }
+.nav-icon { font-size:14px; width:18px; text-align:center; }
+
+.main { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+.topbar { background:white; padding:12px 28px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #E2E8EE; }
+.breadcrumb { font-size:12px; color:#8AAABF; margin-bottom:2px; }
+.topbar-title { font-size:17px; font-weight:700; color:#0D5271; }
+.topbar-right { display:flex; align-items:center; gap:10px; }
+.btn { padding:8px 16px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; border:none; }
+.btn-primary { background:#0D5271; color:white; }
+.btn-gold { background:#C9A84C; color:white; }
+.btn-outline { background:white; color:#0D5271; border:1.5px solid #0D5271; }
+.avatar { width:32px; height:32px; background:#0D5271; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:11px; font-weight:700; }
+
+.content { flex:1; padding:20px 28px; overflow-y:auto; }
+
+/* PROJECT HEADER */
+.project-header { background:white; border-radius:10px; padding:20px 24px; margin-bottom:18px; box-shadow:0 1px 6px rgba(0,0,0,0.06); border:1px solid #EDF2F7; }
+.project-header-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
+.project-title { font-size:20px; font-weight:800; color:#0D5271; margin-bottom:4px; }
+.project-meta-row { display:flex; gap:20px; align-items:center; }
+.meta-chip { display:flex; align-items:center; gap:5px; font-size:12px; color:#5A7A8F; }
+.status-badge { padding:5px 14px; border-radius:20px; font-size:11.5px; font-weight:700; }
+.status-roofing { background:#FEF3E2; color:#E67E22; }
+
+/* PROGRESS BAR */
+.progress-section { margin-top:14px; }
+.progress-label { display:flex; justify-content:space-between; margin-bottom:6px; }
+.progress-label span { font-size:12px; color:#5A7A8F; font-weight:500; }
+.progress-label strong { font-size:14px; color:#0D5271; font-weight:800; }
+.progress-bar { height:10px; background:#EDF2F7; border-radius:5px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,#0D5271,#1A7294); border-radius:5px; }
+.stage-markers { display:flex; justify-content:space-between; margin-top:6px; }
+.stage-marker { font-size:9px; color:#A0B8C8; text-align:center; }
+.stage-marker.done { color:#0D5271; font-weight:600; }
+.stage-marker.current { color:#E67E22; font-weight:700; }
+
+/* GRID LAYOUT */
+.content-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+.content-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px; }
+
+/* COST CARDS */
+.cost-card { background:white; border-radius:10px; padding:18px 20px; box-shadow:0 1px 6px rgba(0,0,0,0.06); border:1px solid #EDF2F7; }
+.cost-label { font-size:11px; color:#8AAABF; text-transform:uppercase; letter-spacing:0.8px; font-weight:600; margin-bottom:6px; }
+.cost-value { font-size:22px; font-weight:800; color:#0D5271; }
+.cost-sub { font-size:11px; color:#A0B8C8; margin-top:4px; }
+.cost-bar { height:5px; background:#EDF2F7; border-radius:3px; margin-top:10px; overflow:hidden; }
+.cost-bar-fill { height:100%; border-radius:3px; }
+
+/* PANEL */
+.panel { background:white; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,0.06); border:1px solid #EDF2F7; overflow:hidden; }
+.panel-header { padding:13px 20px; border-bottom:1px solid #EDF2F7; display:flex; justify-content:space-between; align-items:center; }
+.panel-title { font-size:13px; font-weight:700; color:#0D5271; }
+.panel-link { font-size:11px; color:#C9A84C; font-weight:600; cursor:pointer; }
+
+table { width:100%; border-collapse:collapse; }
+th { padding:9px 16px; text-align:left; font-size:10px; font-weight:700; color:#8AAABF; text-transform:uppercase; letter-spacing:0.8px; border-bottom:1px solid #EDF2F7; background:#F7FAFC; }
+td { padding:11px 16px; font-size:12px; color:#1C3A4A; border-bottom:1px solid #F5F8FA; }
+tr:last-child td { border-bottom:none; }
+.badge { padding:3px 9px; border-radius:20px; font-size:10px; font-weight:600; display:inline-block; }
+.badge-green { background:#EBF5EE; color:#27AE60; }
+.badge-orange { background:#FEF3E2; color:#E67E22; }
+.badge-blue { background:#EBF5FE; color:#2980B9; }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-circle">U</div>
+    <div><div class="logo-text">UMANIE Homes</div><div class="logo-sub">Operations CRM</div></div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Main</div>
+    <div class="nav-item"><span class="nav-icon">📊</span> Dashboard</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">CRM</div>
+    <div class="nav-item"><span class="nav-icon">👥</span> Leads</div>
+    <div class="nav-item"><span class="nav-icon">🤝</span> Clients</div>
+    <div class="nav-item"><span class="nav-icon">📅</span> Follow-ups</div>
+    <div class="nav-item"><span class="nav-icon">🗺️</span> Site Visits</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Projects & Properties</div>
+    <div class="nav-item active"><span class="nav-icon">🏗️</span> Projects</div>
+    <div class="nav-item"><span class="nav-icon">🏠</span> Properties</div>
+    <div class="nav-item"><span class="nav-icon">📦</span> Inventory</div>
+    <div class="nav-item"><span class="nav-icon">👷</span> Labour</div>
+    <div class="nav-item"><span class="nav-icon">🧾</span> Expenses</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Sales & Payments</div>
+    <div class="nav-item"><span class="nav-icon">📈</span> Sales Pipeline</div>
+    <div class="nav-item"><span class="nav-icon">💰</span> Payments</div>
+    <div class="nav-item"><span class="nav-icon">🧾</span> Invoices</div>
+    <div class="nav-item"><span class="nav-icon">✅</span> Receipts</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">More</div>
+    <div class="nav-item"><span class="nav-icon">📄</span> Agreements</div>
+    <div class="nav-item"><span class="nav-icon">⭐</span> Reviews</div>
+    <div class="nav-item"><span class="nav-icon">🏢</span> Property Mgmt</div>
+    <div class="nav-item"><span class="nav-icon">📋</span> Reports</div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <div>
+      <div class="breadcrumb">Projects → Project Detail</div>
+      <div class="topbar-title">East Legon 4-Bedroom Duplex</div>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-outline">+ Add Expense</button>
+      <button class="btn btn-gold">Convert to Property →</button>
+      <button class="btn btn-primary">Edit Project</button>
+      <div class="avatar">AK</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- PROJECT HEADER -->
+    <div class="project-header">
+      <div class="project-header-top">
+        <div>
+          <div class="project-title">East Legon 4-Bedroom Duplex</div>
+          <div class="project-meta-row">
+            <div class="meta-chip">📍 East Legon, Accra</div>
+            <div class="meta-chip">🏠 Duplex · 4 Bedrooms</div>
+            <div class="meta-chip">📅 Started: Jan 15, 2026</div>
+            <div class="meta-chip">🎯 Target: Jul 30, 2026</div>
+            <div class="meta-chip">👷 PM: Kofi Mensah</div>
+          </div>
+        </div>
+        <span class="status-badge status-roofing">🏗️ Roofing Stage</span>
+      </div>
+      <div class="progress-section">
+        <div class="progress-label">
+          <span>Overall Construction Progress</span>
+          <strong>72% Complete</strong>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+        <div class="stage-markers">
+          <div class="stage-marker done">Planning ✓</div>
+          <div class="stage-marker done">Foundation ✓</div>
+          <div class="stage-marker done">Structure ✓</div>
+          <div class="stage-marker current">Roofing ◉</div>
+          <div class="stage-marker">Plumbing</div>
+          <div class="stage-marker">Plastering</div>
+          <div class="stage-marker">Tiling</div>
+          <div class="stage-marker">Painting</div>
+          <div class="stage-marker">Finishing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COST SUMMARY ROW -->
+    <div class="content-grid-3" style="margin-bottom:16px;">
+      <div class="cost-card">
+        <div class="cost-label">Total Materials Cost</div>
+        <div class="cost-value">GHS 148,500</div>
+        <div class="cost-sub">Cement, iron rods, blocks, tiles, paint...</div>
+        <div class="cost-bar"><div class="cost-bar-fill" style="width:52%;background:#0D5271;"></div></div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-label">Total Labour / Workmanship</div>
+        <div class="cost-value">GHS 86,200</div>
+        <div class="cost-sub">Masons, carpenters, electricians, plumbers</div>
+        <div class="cost-bar"><div class="cost-bar-fill" style="width:30%;background:#C9A84C;"></div></div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-label">Other Expenses</div>
+        <div class="cost-value">GHS 49,300</div>
+        <div class="cost-sub">Transport, permits, equipment, tools</div>
+        <div class="cost-bar"><div class="cost-bar-fill" style="width:18%;background:#E67E22;"></div></div>
+      </div>
+    </div>
+
+    <!-- BUDGET VS ACTUAL + PROFIT -->
+    <div class="content-grid" style="margin-bottom:16px;">
+      <div class="cost-card" style="background:linear-gradient(135deg,#0D5271,#1A7294);color:white;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+          <div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Total Project Cost So Far</div>
+            <div style="font-size:28px;font-weight:800;color:white;">GHS 284,000</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:rgba(255,255,255,0.55);margin-bottom:4px;">Budget</div>
+            <div style="font-size:18px;font-weight:700;color:#C9A84C;">GHS 320,000</div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:5px;height:8px;overflow:hidden;margin-bottom:6px;">
+          <div style="width:88%;height:100%;background:#C9A84C;border-radius:5px;"></div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.6);">88% of budget used · GHS 36,000 remaining · On track ✓</div>
+      </div>
+
+      <div class="cost-card" style="background:#0A2D1A;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+          <div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Expected Selling Price</div>
+            <div style="font-size:22px;font-weight:800;color:#C9A84C;">GHS 520,000</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:4px;">Est. Profit</div>
+            <div style="font-size:22px;font-weight:800;color:#27AE60;">GHS 200,000</div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08);border-radius:6px;padding:8px 12px;">
+          <div style="font-size:10.5px;color:rgba(255,255,255,0.4);">Profit Margin</div>
+          <div style="font-size:16px;font-weight:800;color:#27AE60;">38.5% · Once fully spent vs selling price</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INVENTORY + LABOUR TABLES -->
+    <div class="content-grid">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">📦 Recent Inventory (Materials)</div>
+          <div class="panel-link">View all stock →</div>
+        </div>
+        <table>
+          <thead><tr><th>Item</th><th>Qty Bought</th><th>Qty Used</th><th>Remaining</th><th>Cost</th></tr></thead>
+          <tbody>
+            <tr><td>Cement (bags)</td><td>850</td><td>720</td><td><span class="badge badge-orange">130 bags</span></td><td>GHS 25,500</td></tr>
+            <tr><td>Iron Rods (12mm)</td><td>200 pcs</td><td>200 pcs</td><td><span class="badge badge-green">0 — Reorder</span></td><td>GHS 18,400</td></tr>
+            <tr><td>Roofing Sheets</td><td>120 pcs</td><td>60 pcs</td><td><span class="badge badge-blue">60 pcs</span></td><td>GHS 28,800</td></tr>
+            <tr><td>Blocks (6-inch)</td><td>4,200</td><td>4,200</td><td><span class="badge badge-green">Complete</span></td><td>GHS 16,800</td></tr>
+            <tr><td>Electrical Wire</td><td>500m</td><td>180m</td><td><span class="badge badge-blue">320m</span></td><td>GHS 8,750</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">👷 Labour Payments</div>
+          <div class="panel-link">View all →</div>
+        </div>
+        <table>
+          <thead><tr><th>Worker / Team</th><th>Role</th><th>Type</th><th>Amount Paid</th><th>Date</th></tr></thead>
+          <tbody>
+            <tr><td>Ebo & Team (4)</td><td>Mason</td><td>Weekly</td><td>GHS 3,200</td><td>28 May 2026</td></tr>
+            <tr><td>Kwesi Carpenters</td><td>Carpenter</td><td>Contract</td><td>GHS 8,500</td><td>25 May 2026</td></tr>
+            <tr><td>Bright Electricals</td><td>Electrician</td><td>Milestone</td><td>GHS 12,000</td><td>20 May 2026</td></tr>
+            <tr><td>Yaw Plumbing Co.</td><td>Plumber</td><td>Milestone</td><td>GHS 9,500</td><td>18 May 2026</td></tr>
+            <tr><td>Site Guards (2)</td><td>Security</td><td>Monthly</td><td>GHS 1,800</td><td>01 May 2026</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
